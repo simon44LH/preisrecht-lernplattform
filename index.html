@@ -3,734 +3,505 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Preisrecht-Lernplattform — Mockup</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:,">
+<title>Preisrecht-Lernplattform — Evaluationsprototyp</title>
 <style>
 :root{
-  --paper:#F6F7F9;
-  --card:#FFFFFF;
-  --ink:#10203A;
-  --muted:#5C6B80;
-  --rule:#D3DAE4;
-  --rule-strong:#A9B5C6;
-  --accent:#1F5C8B;
-  --accent-soft:#E8F0F7;
-  --stamp:#B02A26;
-  --stamp-soft:#FBEDEC;
-  --ok:#2E6B4F;
-  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
-  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
-  --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+  --paper:#F4F6F9;--card:#FFFFFF;--ink:#10203A;--muted:#5C6B80;
+  --rule:#D3DAE4;--rule-strong:#A9B5C6;--accent:#1F5C8B;
+  --accent-strong:#16466B;--accent-soft:#E8F0F7;--signal:#A53A35;
+  --signal-soft:#FBEDEC;--ok:#2E6B4F;--ok-soft:#EEF6F1;
+  --warn:#8A641D;--warn-soft:#FFF7E6;--display:Arial,"Helvetica Neue",sans-serif;
+  --body:"Segoe UI",Arial,sans-serif;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace
 }
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
-  background:var(--paper);
-  color:var(--ink);
-  font-family:var(--body);
-  font-size:15px;
-  line-height:1.55;
-  -webkit-font-smoothing:antialiased;
-}
-h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-0.015em;margin:0}
-.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
-
-/* ---------- Rahmen ---------- */
-.app{display:grid;grid-template-columns:270px 1fr;min-height:100vh}
-
-.side{
-  background:var(--ink);
-  color:#DCE4EF;
-  padding:22px 0 32px;
-  display:flex;flex-direction:column;
-}
+*{box-sizing:border-box}html{scroll-behavior:auto}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}button{touch-action:manipulation}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-.015em;margin:0}p{margin-top:0}.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.app{display:grid;grid-template-columns:270px minmax(0,1fr);min-height:100vh}
+.side{background:var(--ink);color:#DCE4EF;padding:22px 0 28px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
 .brand{padding:0 22px 20px;border-bottom:1px solid rgba(255,255,255,.12)}
-.brand .mark{
-  font-family:var(--mono);font-size:11px;letter-spacing:.16em;
-  text-transform:uppercase;color:#8FA6C4;margin-bottom:6px;
-}
-.brand h1{font-size:19px;color:#fff;line-height:1.25}
-
-.pfad-label{
-  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  color:#7C93B2;padding:20px 22px 10px;
-}
-.nav{list-style:none;margin:0;padding:0}
-.nav button{
-  width:100%;display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:baseline;
-  background:none;border:0;border-left:3px solid transparent;
-  color:#C6D2E2;font-family:var(--body);font-size:14.5px;text-align:left;
-  padding:11px 22px 11px 19px;cursor:pointer;
-}
-.nav button:hover{background:rgba(255,255,255,.05);color:#fff}
-.nav button .z{font-family:var(--mono);font-size:12px;color:#6D86A8}
-.nav button[aria-current="true"]{
-  background:rgba(255,255,255,.08);border-left-color:#5B9BD5;color:#fff;font-weight:600;
-}
-.nav button[aria-current="true"] .z{color:#5B9BD5}
-.side-foot{
-  margin-top:auto;padding:18px 22px 0;border-top:1px solid rgba(255,255,255,.12);
-  font-family:var(--mono);font-size:10.5px;line-height:1.6;color:#6D86A8;
-}
-
-.main{padding:34px 44px 70px;max-width:1080px}
-.screen{display:none}
-.screen.on{display:block;animation:fade .22s ease-out}
-@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-
-.eyebrow{
-  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:9px;
-}
-.screen h2{font-size:29px;line-height:1.2;margin-bottom:8px}
-.lede{color:var(--muted);font-size:16px;max-width:66ch;margin:0 0 26px}
-
-.card{
-  background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px;
-}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-
-/* ---------- Hinweisleiste ---------- */
-#quellenhinweis{
-  border:1px solid var(--rule-strong);border-left:4px solid var(--stamp);
-  background:var(--stamp-soft);padding:11px 16px;margin-bottom:24px;border-radius:2px;
-  font-size:13.5px;color:#5A2A28;
-}
-#quellenhinweis b{font-family:var(--display);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
-
-/* ---------- Modulkacheln ---------- */
-.module-list{display:grid;gap:12px;margin-top:6px}
-.module{
-  background:var(--card);border:1px solid var(--rule);border-radius:3px;
-  display:grid;grid-template-columns:56px 1fr 132px;align-items:center;gap:18px;
-  padding:16px 20px;cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%;
-  transition:border-color .15s,box-shadow .15s;
-}
-.module:hover{border-color:var(--accent);box-shadow:0 1px 0 var(--accent)}
-.module .z{font-family:var(--mono);font-size:20px;color:var(--rule-strong)}
-.module h3{font-size:16.5px;margin-bottom:2px}
-.module p{margin:0;color:var(--muted);font-size:13.5px}
-.module .meta{
-  font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--muted);text-align:right;
-}
-.module.kern{border-left:4px solid var(--stamp)}
-.module.kern .meta{color:var(--stamp)}
-
-/* ---------- Preistreppe ---------- */
-.treppe{display:grid;gap:0;margin:8px 0 4px}
-.stufe{
-  display:grid;grid-template-columns:74px 1fr;gap:20px;align-items:start;
-  border-left:2px solid var(--rule);padding:16px 0 16px 22px;margin-left:6px;position:relative;
-}
-.stufe::before{
-  content:"";position:absolute;left:-6px;top:22px;width:10px;height:10px;
-  background:var(--card);border:2px solid var(--rule-strong);border-radius:50%;
-}
-.stufe:first-child::before{border-color:var(--accent);background:var(--accent)}
-.stufe .para{font-family:var(--mono);font-size:13px;color:var(--accent);padding-top:1px}
-.stufe h4{font-size:16px;margin-bottom:3px}
-.stufe p{margin:0;color:var(--muted);font-size:14px;max-width:62ch}
-
-/* ---------- Simulation ---------- */
-.sim{display:grid;grid-template-columns:340px 1fr;gap:20px;align-items:start}
-@media(max-width:1000px){.sim{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}}
-
-.panel-title{
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--muted);padding-bottom:9px;margin-bottom:16px;border-bottom:1px solid var(--rule);
-}
-.szenarien{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
-.szenarien button{
-  font-family:var(--body);font-size:13.5px;font-weight:600;padding:10px 6px;cursor:pointer;
-  background:var(--card);border:1px solid var(--rule-strong);border-radius:2px;color:var(--muted);
-}
-.szenarien button:hover{border-color:var(--accent);color:var(--accent)}
-.szenarien button.aktiv{background:var(--ink);border-color:var(--ink);color:#fff}
-
-.feld{margin-bottom:17px}
-.feld .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:5px}
-.feld label{font-size:13.5px;font-weight:600}
-.feld .hint{display:block;font-weight:400;color:var(--muted);font-size:12px;line-height:1.35}
-.feld output{font-family:var(--mono);font-size:13.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
-input[type=range]{width:100%;accent-color:var(--accent);margin:0;cursor:pointer}
-.trenner{border:0;border-top:1px solid var(--rule);margin:20px 0}
-
-.abgeleitet{
-  background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:11px 13px;
-  font-family:var(--mono);font-size:12.5px;display:flex;justify-content:space-between;gap:10px;
-}
-.abgeleitet span:last-child{font-weight:600}
-
-/* Ergebnisblock */
-.ergebnis{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:20px}
-.kpi{background:var(--card);padding:16px 18px}
-.kpi .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.kpi .v{font-family:var(--mono);font-size:27px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
-.kpi.hero{background:var(--ink)}
-.kpi.hero .k{color:#8FA6C4}
-.kpi.hero .v{color:#fff}
-
-.rechenweg{
-  font-family:var(--mono);font-size:12.5px;line-height:2;
-  background:var(--paper);border:1px solid var(--rule);padding:14px 16px;overflow-x:auto;white-space:nowrap;
-}
-.rechenweg .lbl{color:var(--muted);display:inline-block;width:26px}
-.rechenweg em{font-style:normal;background:var(--stamp-soft);color:var(--stamp);padding:1px 4px;font-weight:600}
-
-/* Signature: Kurve */
-.kurve{background:var(--card);border:1px solid var(--rule);padding:18px 20px 12px}
-.kurve svg{display:block;width:100%;height:auto}
-.legende{display:flex;gap:20px;flex-wrap:wrap;margin-top:10px;font-size:12.5px;color:var(--muted)}
-.legende i{display:inline-block;width:20px;height:0;border-top:2px solid;vertical-align:middle;margin-right:7px}
-
-.pointe{
-  border:1px solid var(--stamp);border-left:4px solid var(--stamp);background:var(--stamp-soft);
-  padding:15px 18px;margin-top:18px;border-radius:2px;
-}
-.pointe h4{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--stamp);margin-bottom:6px}
-.pointe p{margin:0;font-size:14.5px;color:#4A2321;max-width:70ch}
-
-/* ---------- Quiz ---------- */
-.frage{background:var(--card);border:1px solid var(--rule);padding:20px 22px;margin-bottom:14px}
-.frage .nr{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
-.frage h3{font-size:17px;margin-bottom:14px;max-width:64ch}
-.opt{display:block;width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer;
-  background:var(--card);border:1px solid var(--rule);border-radius:2px;padding:11px 14px;margin-bottom:7px;
-  display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;transition:border-color .12s}
-.opt:hover:not(:disabled){border-color:var(--accent)}
-.opt .m{font-family:var(--mono);font-size:12.5px;color:var(--muted);padding-top:2px}
-.opt:disabled{cursor:default}
-.opt.richtig{border-color:var(--ok);background:#EEF6F1}
-.opt.richtig .m{color:var(--ok);font-weight:600}
-.opt.falsch{border-color:var(--stamp);background:var(--stamp-soft)}
-.opt.falsch .m{color:var(--stamp);font-weight:600}
-.aufloesung{display:none;margin-top:11px;padding:12px 14px;background:var(--paper);border-left:3px solid var(--accent);font-size:14px;color:var(--muted);max-width:70ch}
-.aufloesung.on{display:block}
-.quizstand{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:6px}
-
-/* ---------- Rollen ---------- */
-table.roll{width:100%;border-collapse:collapse;background:var(--card);font-size:14px}
-table.roll th,table.roll td{border:1px solid var(--rule);padding:10px 13px;text-align:left;vertical-align:top}
-table.roll th{background:var(--paper);font-family:var(--display);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
-table.roll td.c{text-align:center;font-family:var(--mono)}
-
-.bar{height:7px;background:var(--rule);border-radius:99px;overflow:hidden;margin-top:8px}
-.bar i{display:block;height:100%;background:var(--accent)}
-.fort{display:grid;grid-template-columns:1fr 60px;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--rule)}
-.fort:last-child{border-bottom:0}
-.fort .t{font-size:14.5px}
-.fort .p{font-family:var(--mono);font-size:13px;text-align:right;color:var(--muted)}
-
-.attn{margin-top:26px;font-size:12.5px;color:var(--muted);font-family:var(--mono);line-height:1.7}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-@media(max-width:820px){.app{grid-template-columns:1fr}.side{padding-bottom:12px}.main{padding:24px 20px 60px}.ergebnis{grid-template-columns:1fr}}
+.brand .mark,.nav-label{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase}.brand .mark{color:#8FA6C4;margin-bottom:6px}.brand h1{font-size:19px;color:#fff;line-height:1.25}
+.nav-label{color:#7C93B2;padding:18px 22px 8px}.nav{list-style:none;margin:0;padding:0}
+.nav button{width:100%;display:grid;grid-template-columns:30px 1fr 18px;gap:9px;align-items:center;background:none;border:0;border-left:3px solid transparent;color:#C6D2E2;font-size:14px;text-align:left;padding:9px 18px 9px 19px;cursor:pointer}
+.nav button:hover{background:rgba(255,255,255,.05);color:#fff}.nav button .z{font-family:var(--mono);font-size:11px;color:#6D86A8}.nav button .done{font-size:12px;color:#71B58E;opacity:0}.nav button.completed .done{opacity:1}
+.nav button[aria-current="page"]{background:rgba(255,255,255,.09);border-left-color:#5B9BD5;color:#fff;font-weight:600}.nav button[aria-current="page"] .z{color:#79B7ED}
+.side-contact{margin-top:auto;padding:20px 22px 17px;border-top:1px solid rgba(255,255,255,.18)}.side-contact .label{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#8FA6C4;margin-bottom:7px}.side-contact strong{display:block;color:#fff;font-size:14px;margin-bottom:2px}.side-contact a{display:block;color:#8FC8F5;font-size:12px;text-decoration:none;overflow-wrap:anywhere}.side-contact a:hover{text-decoration:underline;color:#fff}.side-contact p{font-size:11px;line-height:1.45;color:#AAB9CC;margin:10px 0 0}.side-foot{margin-top:0;padding:14px 22px 0;border-top:1px solid rgba(255,255,255,.12);font-family:var(--mono);font-size:10px;line-height:1.65;color:#7890B0}
+.main{padding:28px 44px 70px;max-width:1180px;width:100%}
+.session-head{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;padding-bottom:17px;margin-bottom:28px;border-bottom:1px solid var(--rule)}
+.session-head .label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}.progress-track{height:7px;background:var(--rule);border-radius:99px;overflow:hidden;max-width:420px}.progress-track i{display:block;height:100%;width:0;background:var(--ok);transition:width .2s ease}.progress-text{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.screen[hidden]{display:none}.screen.on{display:block;animation:fade .18s ease-out}@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:9px}.screen h2{font-size:29px;line-height:1.2;margin-bottom:8px}.lede{color:var(--muted);font-size:16px;max-width:72ch;margin:0 0 25px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:21px 23px}.grid2,.grid3{display:grid;gap:17px}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}.stack{display:grid;gap:16px}
+.panel-title{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);padding-bottom:9px;margin-bottom:14px;border-bottom:1px solid var(--rule)}
+.tag{display:inline-flex;align-items:center;border:1px solid var(--rule-strong);border-radius:99px;padding:3px 9px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}.tag.ok{border-color:#9CC8AE;background:var(--ok-soft);color:var(--ok)}.tag.concept{border-color:#D8BE84;background:var(--warn-soft);color:var(--warn)}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);padding:15px 18px;margin:18px 0;border-radius:2px}.callout.warn{border-left-color:var(--warn);background:var(--warn-soft)}.callout.signal{border-left-color:var(--signal);background:var(--signal-soft)}.callout h4{font-size:13px;margin-bottom:5px}.callout p:last-child{margin-bottom:0}.micro{font-size:12.5px;color:var(--muted)}.source{font-size:12px;color:var(--muted);border-top:1px solid var(--rule);padding-top:12px;margin-top:18px}
+.quick-actions{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:24px}.btn{border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:3px;padding:10px 15px;font-weight:600;cursor:pointer}.btn:hover{background:var(--accent-strong);border-color:var(--accent-strong)}.btn.secondary{background:var(--card);color:var(--accent)}.btn.secondary:hover{background:var(--accent-soft)}.btn.tertiary{background:transparent;color:var(--muted);border-color:var(--rule-strong)}
+.module-list{display:grid;gap:10px;margin-top:6px}.module{background:var(--card);border:1px solid var(--rule);border-radius:4px;display:grid;grid-template-columns:50px 1fr 112px;align-items:center;gap:16px;padding:14px 18px;cursor:pointer;text-align:left;color:inherit;width:100%;transition:border-color .14s,box-shadow .14s}.module:hover{border-color:var(--accent);box-shadow:0 1px 0 var(--accent)}.module .z{font-family:var(--mono);font-size:18px;color:var(--rule-strong)}.module h3{font-size:16px;margin-bottom:2px}.module p{margin:0;color:var(--muted);font-size:13px}.module .meta{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);text-align:right}.module.kern{border-left:4px solid var(--signal)}.module.kern .meta{color:var(--signal)}.module.completed{border-left:4px solid var(--ok)}.module.completed .meta{color:var(--ok);font-weight:700}
+.learning-goal{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;background:var(--card);border:1px solid var(--rule);padding:15px 17px;margin-bottom:20px}.learning-goal .icon{width:30px;height:30px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--mono);font-weight:700}.learning-goal b{display:block;font-size:13px;margin-bottom:2px}.learning-goal p{margin:0;color:var(--muted);font-size:13.5px}
+.compare-card{position:relative;padding-top:46px}.compare-card .cap{position:absolute;inset:0 0 auto;background:var(--paper);border-bottom:1px solid var(--rule);padding:10px 18px;font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}.compare-card h3{font-size:19px;margin-bottom:10px}.compare-card ul,.decision-card ul{margin:0;padding-left:19px;color:var(--muted)}.compare-card li,.decision-card li{margin-bottom:7px}.logic-arrow{text-align:center;margin:17px 0;font-family:var(--mono);font-size:12px;color:var(--accent)}
+.logic-figure{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:20px 22px;margin:0 0 18px}.logic-figure-title{text-align:center;margin-bottom:18px}.logic-figure-title h3{font-size:19px;margin-bottom:3px}.logic-figure-title p{font-size:12.5px;color:var(--muted);margin:0}.logic-columns{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}.logic-column{display:grid;grid-template-columns:minmax(150px,1fr) 190px;gap:18px;align-items:end;padding:20px 24px}.logic-column:first-child{border-right:1px solid var(--rule)}.logic-column h4{grid-column:1/-1;text-align:center;font-size:17px;margin-bottom:2px}.logic-note{align-self:center;font-size:12.5px;color:var(--muted)}.logic-note b{display:block;color:var(--ink);margin-bottom:5px}.logic-note ul{margin:0;padding-left:17px}.logic-note li{margin-bottom:5px}.price-stack{width:190px;align-self:end}.price-caption{font-family:var(--mono);font-size:9.5px;line-height:1.35;text-align:center;color:var(--muted);margin-bottom:6px;min-height:39px;display:flex;align-items:end;justify-content:center}.stack-segments{height:310px;display:flex;flex-direction:column}.logic-hotspot{position:relative;width:100%;border:0;border-left:1px solid rgba(16,32,58,.16);border-right:1px solid rgba(16,32,58,.16);padding:8px;color:#fff;font-weight:700;font-size:12px;line-height:1.25;cursor:help;display:flex;align-items:center;justify-content:center;text-align:center;transition:filter .15s,transform .15s}.logic-hotspot:hover,.logic-hotspot:focus-visible,.logic-hotspot.active{filter:brightness(1.06);transform:scaleX(1.035);z-index:2}.logic-hotspot.price-line{width:100%;height:9px;border:0;border-top:3px solid var(--accent);border-left:1px solid transparent;border-right:1px solid transparent;background:transparent;padding:0}.logic-hotspot.cost{height:170px;background:#9BA5B1}.logic-hotspot.overhead{height:70px;background:#B65A3A}.logic-hotspot.profit{height:70px;background:#4E8A43}.logic-hotspot.variable{height:70px;color:#2E6B4F;background:repeating-linear-gradient(135deg,#EAF4E8,#EAF4E8 9px,#DDEDD9 9px,#DDEDD9 18px);border:2px dashed #5C9651;font-size:23px}.logic-hotspot.variable span{font-size:11px;margin-left:5px}.logic-detail{margin-top:17px;background:var(--accent-soft);border-left:4px solid var(--accent);padding:14px 16px;min-height:82px}.logic-detail .kind{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}.logic-detail h4{font-size:15px;margin-bottom:3px}.logic-detail p{margin:0;color:var(--muted);font-size:13.5px}
+.price-order-figure{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:20px 22px;margin:0 0 18px}.price-order-head{text-align:center;margin-bottom:14px}.price-order-head h3{font-size:19px;margin-bottom:3px}.price-order-head p{font-size:12.5px;color:var(--muted);margin:0}.price-order-chart{position:relative;padding:28px 20px 0 46px}.priority-label{position:absolute;left:0;top:34px;bottom:77px;width:28px;font-family:var(--mono);font-size:9.5px;color:var(--muted);writing-mode:vertical-rl;transform:rotate(180deg);text-align:center}.priority-label::before{content:"↑";font-size:17px;color:var(--accent);margin-bottom:5px}.price-bars{height:330px;display:grid;grid-template-columns:1.55fr 1fr 1fr 1fr;gap:12px;align-items:end;border-bottom:1px solid var(--rule-strong)}.price-bar-wrap{height:100%;display:flex;flex-direction:column;justify-content:flex-end;min-width:0}.step-hotspot{width:100%;border:1px solid #8FB7DC;border-radius:4px 4px 1px 1px;background:#DFECF8;color:var(--accent-strong);font-weight:700;cursor:help;padding:10px 7px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:filter .15s,transform .15s,box-shadow .15s}.step-hotspot:hover,.step-hotspot:focus-visible,.step-hotspot.active{filter:brightness(.98);transform:translateY(-3px);box-shadow:0 5px 12px rgba(16,32,58,.13)}.step-hotspot.market{height:310px;background:#F5F2EA;color:var(--ink);border-color:#C9C1AF}.step-hotspot.skf{height:215px}.step-hotspot.skr{height:155px}.step-hotspot.ske{height:105px}.step-hotspot .abbr{font-size:17px}.step-hotspot .law{font-family:var(--mono);font-size:11px;font-weight:500;margin-top:2px}.basis-label{font-family:var(--mono);font-size:9.5px;color:var(--muted);text-align:center;min-height:34px;padding-top:7px;line-height:1.3}.lsp-span{margin-left:calc(38.75% + 6px);width:calc(61.25% - 6px);border-top:1px dashed var(--rule-strong);text-align:center;padding-top:5px;font-size:10.5px;color:var(--muted)}.competition-axis{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--rule-strong);margin-top:18px;padding-top:6px;font-family:var(--mono);font-size:9.5px;color:var(--muted);position:relative}.competition-axis::after{content:"→";position:absolute;right:-2px;top:-12px;color:var(--accent);font-size:17px}.balance-drivers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}.driver-card{background:var(--card);border:1px solid var(--rule);border-top:4px solid var(--accent);padding:16px 17px}.driver-card.minus{border-top-color:var(--signal)}.driver-card .driver-head{display:flex;align-items:center;gap:9px;margin-bottom:8px}.driver-card .driver-sign{width:27px;height:27px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--mono);font-weight:700}.driver-card.minus .driver-sign{background:var(--signal-soft);color:var(--signal)}.driver-card h3{font-size:16px}.driver-card ul{margin:0;padding-left:18px;color:var(--muted);font-size:12.5px}.driver-card li{margin-bottom:4px}.example-equation{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px}.example-equation .result{font-family:var(--mono);font-size:18px;color:var(--accent);font-weight:700}.example-equation .arrow{font-family:var(--mono);font-size:22px;color:var(--accent)}
+.treppe{display:grid;gap:0;margin:4px 0}.stufe{display:grid;grid-template-columns:92px 1fr;gap:18px;align-items:start;border-left:2px solid var(--rule);padding:14px 0 14px 22px;margin-left:7px;position:relative}.stufe::before{content:"";position:absolute;left:-6px;top:20px;width:9px;height:9px;background:var(--card);border:2px solid var(--rule-strong);border-radius:50%}.stufe:first-child::before{border-color:var(--accent);background:var(--accent)}.stufe .para{font-family:var(--mono);font-size:12px;color:var(--accent);padding-top:1px}.stufe h4{font-size:16px;margin-bottom:3px}.stufe p{margin:0;color:var(--muted);font-size:13.5px;max-width:70ch}
+.formula{font-family:var(--mono);font-size:18px;background:var(--ink);color:#fff;padding:18px 20px;border-radius:3px;margin:15px 0;text-align:center;overflow-x:auto;white-space:nowrap}.interactive-formula{font-family:var(--mono);background:var(--ink);color:#fff;padding:22px 18px;border-radius:4px 4px 0 0;margin:15px 0 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;font-size:20px;line-height:1.2}.formula-op{color:#C9D5E5;font-size:20px}.formula-part{appearance:none;border:1px solid rgba(255,255,255,.32);border-radius:3px;background:rgba(255,255,255,.09);color:#fff;padding:8px 10px;font-family:var(--mono);font-size:17px;line-height:1.2;cursor:help;transition:transform .15s,filter .15s,box-shadow .15s}.formula-part.regulated{background:#245F8C;border-color:#70A9D3}.formula-part.individual{background:#8B3A3F;border-color:#CF858A}.formula-part:hover,.formula-part:focus-visible,.formula-part.active{filter:brightness(1.16);transform:translateY(-2px);box-shadow:0 5px 12px rgba(0,0,0,.22)}.formula-fraction{display:inline-grid;grid-template-rows:auto auto;align-items:center;text-align:center;vertical-align:middle}.formula-fraction .top{border-bottom:1.5px solid currentColor;padding:1px 5px 4px}.formula-fraction .bottom{padding:4px 5px 1px}.formula-part.fraction-part{padding:7px 9px}.formula-legend{display:flex;gap:18px;flex-wrap:wrap;background:var(--card);border:1px solid var(--rule);border-top:0;padding:10px 14px;font-size:11.5px;color:var(--muted)}.formula-legend i{display:inline-block;width:12px;height:12px;margin-right:6px;vertical-align:-2px;border-radius:2px}.formula-legend .regulated{background:#245F8C}.formula-legend .individual{background:#8B3A3F}.formula-detail{margin-top:14px}.definition-list{display:grid;grid-template-columns:58px 1fr;gap:0;background:var(--card);border:1px solid var(--rule)}.definition-list dt,.definition-list dd{padding:10px 13px;border-bottom:1px solid var(--rule);margin:0}.definition-list dt{font-family:var(--mono);font-weight:700;color:var(--accent);background:var(--paper)}.definition-list dd{color:var(--muted)}.definition-list dt:last-of-type,.definition-list dd:last-of-type{border-bottom:0}
+.q-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:15px}.q-item{border:1px solid var(--rule);padding:12px;background:var(--paper)}.q-item b{display:block;font-family:var(--mono);color:var(--accent);font-size:17px}.q-item span{font-size:12px;color:var(--muted)}.decision-card h3{font-size:18px;margin-bottom:8px}.decision-card p{color:var(--muted);margin-bottom:10px}
+.calc-overview{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:21px 23px;margin:0 0 22px}.calc-overview-head{text-align:center;margin-bottom:18px}.calc-overview-head h3{font-size:20px;margin-bottom:4px}.calc-overview-head p{font-size:12.5px;color:var(--muted);margin:0}.calc-overview-grid{display:grid;grid-template-columns:minmax(0,1fr) 315px;gap:30px;align-items:center}.calc-story h4{font-size:18px;margin-bottom:8px}.calc-story p{color:var(--muted);margin-bottom:14px}.result-equation{background:var(--ok-soft);border-left:4px solid var(--ok);padding:13px 15px;font-family:var(--mono);font-weight:700;color:var(--ok);margin-bottom:14px}.calc-stack-shell{padding:8px 15px 0}.calc-price-label{text-align:center;font-family:var(--mono);font-size:10px;color:var(--muted);padding-bottom:6px;border-bottom:3px solid var(--accent);margin-bottom:4px}.calc-group{position:relative;border:2px solid var(--rule-strong);padding:5px;margin-bottom:5px}.calc-group.result-group{border-color:#7CB18F;background:var(--ok-soft)}.calc-group.sk3-group{border-color:#CF858A;background:var(--signal-soft)}.calc-group-label{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;text-align:center;color:var(--muted);margin:2px 0 5px}.calc-hotspot{width:100%;border:0;color:#fff;font-weight:700;font-size:11.5px;line-height:1.25;padding:9px 8px;cursor:help;transition:filter .15s,transform .15s}.calc-hotspot:hover,.calc-hotspot:focus-visible,.calc-hotspot.active{filter:brightness(1.08);transform:scaleX(1.025);position:relative;z-index:2}.calc-hotspot.bonner{background:#4E8A43}.calc-hotspot.kazi{background:#2474A8}.calc-hotspot.special{background:#C89B2B}.calc-hotspot.overheads{background:#B65A3A}.calc-hotspot.hk2{background:#8C98A6;min-height:72px}.calc-overview-detail{margin-top:17px}.calc-overview .source{margin-bottom:0}
+.baseline-setup{background:#E9EDF2;border:1px solid var(--rule-strong);padding:17px 18px;margin-bottom:18px}.baseline-setup .panel-title{color:#45566D}.baseline-form{display:grid;grid-template-columns:minmax(220px,1.2fr) minmax(220px,1fr) auto;gap:14px;align-items:end}.baseline-form .field{margin:0}.baseline-status{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:10px}.baseline-status.dirty{color:#8A5A18}.baseline-error{display:none;color:var(--signal);font-size:11.5px;margin-top:7px;font-weight:600}.baseline-error.on{display:block}.sim{display:grid;grid-template-columns:350px minmax(0,1fr);gap:19px;align-items:start}.sim-controls{border-top:4px solid var(--signal)}.field{margin-bottom:16px}.field .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:5px;flex-wrap:wrap}.field label{font-size:13px;font-weight:600}.field .hint{display:block;font-weight:400;color:var(--muted);font-size:11.5px;line-height:1.35}.field output{font-family:var(--mono);font-size:12.5px;white-space:nowrap;margin-left:auto}input[type=range]{width:100%;accent-color:var(--accent);margin:0;cursor:pointer}input[type=number],input[type=text],select{width:100%;border:1px solid var(--rule-strong);border-radius:3px;background:#fff;color:var(--ink);padding:9px 10px;margin-top:5px}.range-scale{display:flex;justify-content:space-between;color:var(--muted);font-family:var(--mono);font-size:9.5px;margin-top:3px}
+.preset-row,.percent-preset-row{display:grid;gap:7px;margin:10px 0 18px}.preset-row{grid-template-columns:repeat(3,1fr)}.percent-preset-row{grid-template-columns:repeat(5,1fr)}.preset-row button,.percent-preset-row button{background:#fff;border:1px solid var(--rule-strong);border-radius:3px;padding:8px 4px;font-size:12px;color:var(--muted);cursor:pointer}.preset-row button:hover,.preset-row button[aria-pressed="true"],.percent-preset-row button:hover,.percent-preset-row button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}.derived{background:var(--paper);border:1px solid var(--rule);padding:9px 11px;font-family:var(--mono);font-size:11.5px;display:flex;justify-content:space-between;gap:9px;margin-top:6px}
+.results{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:13px}.scenario{background:var(--card);border:1px solid var(--rule);padding:16px 17px}.scenario.fixed{background:#E9EDF2;border-color:var(--rule-strong);box-shadow:inset 0 4px 0 #7E8998}.scenario.changed{border-color:#D88985;box-shadow:inset 0 4px 0 var(--signal)}.scenario .caption{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}.scenario .value{font-family:var(--mono);font-size:25px;font-weight:700;line-height:1.15;margin-bottom:4px}.scenario .result-label{font-size:11.5px;color:var(--muted)}.scenario-rates{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:13px 0}.scenario-rate{background:rgba(255,255,255,.72);border:1px solid var(--rule);padding:7px 6px;text-align:center}.scenario-rate span{display:block;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.04em}.scenario-rate b{display:block;font-family:var(--mono);font-size:13px;margin-top:2px}.scenario-rate.total{border-color:#9CB7D0}.scenario dl{display:grid;grid-template-columns:1fr auto;gap:4px 12px;margin:0;font-size:12.5px}.scenario dt{color:var(--muted)}.scenario dd{margin:0;font-family:var(--mono)}
+.delta{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:15px}.delta-item{background:var(--card);padding:12px 14px}.delta-item .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}.delta-item .v{font-family:var(--mono);font-size:17px;font-weight:700}.delta-item .sub{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:3px}.calculation{font-family:var(--mono);font-size:11.5px;line-height:1.85;background:var(--paper);border:1px solid var(--rule);padding:13px 14px;overflow-x:auto;white-space:nowrap}.calculation em{font-style:normal;background:var(--signal-soft);color:var(--signal);padding:1px 3px;font-weight:700}.calculation .cap-note{color:var(--signal);font-family:var(--sans);white-space:normal;margin-top:6px;line-height:1.4}
+.fixed-curves{background:var(--card);border:1px solid var(--rule);padding:16px 18px;margin-top:15px}.chart-note{font-size:11px;color:var(--muted);margin:-3px 0 13px}.fixed-curve-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.fixed-curve-panel{margin:0;border:1px solid var(--rule);background:var(--paper);padding:12px 12px 9px}.fixed-curve-panel figcaption{margin-bottom:4px}.fixed-curve-panel figcaption strong{display:block;font-size:14px}.fixed-curve-panel figcaption span{display:block;font-size:10.5px;color:var(--muted);margin-top:2px}.fixed-curve-plot{display:block;width:100%;height:auto}.fixed-curve-plot .plot-frame{fill:var(--card);stroke:var(--rule)}.fixed-curve-plot .grid-line{stroke:var(--rule);stroke-width:1}.fixed-curve-plot .axis-line{stroke:var(--rule-strong);stroke-width:1.2}.fixed-curve-plot .axis-text{fill:var(--muted);font-family:var(--mono);font-size:11px}.fixed-curve-plot .axis-title{fill:var(--muted);font-size:11px}.fixed-curve-plot .fixed-curve{fill:none;stroke-width:3;stroke-linecap:round}.fixed-curve-plot .fixed-curve.bonner{stroke:#4E8A43}.fixed-curve-plot .fixed-curve.kazi{stroke:#2474A8}.fixed-curve-plot .moving-dot{stroke:#fff;stroke-width:3;transition:cx .18s ease,cy .18s ease}.fixed-curve-plot .moving-dot.bonner{fill:#4E8A43}.fixed-curve-plot .moving-dot.kazi{fill:#2474A8}.fixed-curve-plot .point-label{font-family:var(--mono);font-size:11.5px;font-weight:700}.fixed-curve-plot .point-label.bonner{fill:#356B2E}.fixed-curve-plot .point-label.kazi{fill:#1E638F}.curve-current{border-top:1px solid var(--rule);padding-top:7px;font-family:var(--mono);font-size:10.5px;color:var(--muted)}.explanation{border:1px solid var(--signal);border-left:4px solid var(--signal);background:var(--signal-soft);padding:14px 16px;margin-top:15px}.explanation h4{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--signal);margin-bottom:5px}.explanation p{margin:0;color:#4A2321}.limits{margin-top:15px}.limits summary{cursor:pointer;font-weight:700;color:var(--ink)}.limits ul{margin:10px 0 0;padding-left:20px;color:var(--muted)}
+.question{background:var(--card);border:1px solid var(--rule);padding:19px 21px;margin-bottom:13px}.question .nr{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}.question h3{font-size:16.5px;margin-bottom:13px;max-width:72ch}.option{width:100%;text-align:left;color:inherit;cursor:pointer;background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:10px 13px;margin-bottom:7px;display:grid;grid-template-columns:22px 1fr;gap:9px;align-items:start}.option:hover:not(:disabled){border-color:var(--accent)}.option .m{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:1px}.option:disabled{cursor:default}.option.correct{border-color:var(--ok);background:var(--ok-soft)}.option.wrong{border-color:var(--signal);background:var(--signal-soft)}.resolution{display:none;margin-top:10px;padding:11px 13px;background:var(--paper);border-left:3px solid var(--accent);font-size:13.5px;color:var(--muted)}.resolution.on{display:block}.lesson-check{margin-top:25px;background:var(--card);border:1px solid var(--rule);border-top:4px solid var(--accent);padding:19px 21px}.lesson-check.completed{border-top-color:var(--ok);background:linear-gradient(180deg,var(--ok-soft),#fff 48%)}.lesson-check .check-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:9px}.lesson-check .check-head h3{font-size:17px}.lesson-check .check-state{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.lesson-check.completed .check-state{color:var(--ok);font-weight:700}.lesson-check .check-question{font-weight:600;margin:0 0 12px}.check-feedback{display:none;margin-top:10px;padding:11px 13px;background:var(--paper);border-left:3px solid var(--accent);font-size:13.5px;color:var(--muted)}.check-feedback.on{display:block}.lesson-check.completed .check-feedback{border-left-color:var(--ok);background:var(--ok-soft);color:#24563F}.completion{display:none;background:var(--ok-soft);border:1px solid #9CC8AE;padding:16px 18px;margin-top:16px}.completion.on{display:block}
+.reference-table,.role-table{width:100%;border-collapse:collapse;background:var(--card);font-size:13.5px}.reference-table th,.reference-table td,.role-table th,.role-table td{border:1px solid var(--rule);padding:9px 12px;text-align:left;vertical-align:top}.reference-table th,.role-table th{background:var(--paper);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}.support-list{display:grid;gap:11px}.support-item{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;border:1px solid var(--rule);background:var(--card);padding:14px 16px}.support-item .symbol{width:30px;height:30px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--mono);font-weight:700}.support-item h3{font-size:15px;margin-bottom:3px}.support-item p{font-size:13px;color:var(--muted);margin:0}
+.meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}.meta-box{background:var(--card);border:1px solid var(--rule);padding:12px}.meta-box .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.meta-box .v{font-size:13px;font-weight:700;margin-top:4px}.flow-nav{display:flex;justify-content:space-between;gap:12px;margin-top:28px;padding-top:18px;border-top:1px solid var(--rule)}.flow-nav button{min-width:145px}
+:focus-visible{outline:3px solid #68A9DF;outline-offset:3px}.screen h2[tabindex="-1"]:focus{outline:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(max-width:1050px){.sim{grid-template-columns:1fr}.grid3,.meta-grid{grid-template-columns:repeat(2,1fr)}.logic-column{grid-template-columns:1fr 165px}.price-stack{width:165px}}
+@media(max-width:850px){.app{display:block}.side{position:static;height:auto;padding-bottom:10px}.brand{padding-bottom:14px}.nav-label{padding-top:12px}.nav{display:flex;overflow-x:auto;padding:0 10px 7px}.nav li{flex:0 0 auto}.nav button{display:flex;gap:7px;width:auto;border-left:0;border-bottom:3px solid transparent;padding:9px 10px}.nav button .done{display:inline}.nav button[aria-current="page"]{border-left:0;border-bottom-color:#5B9BD5}.side-foot{display:none}.main{padding:22px 20px 55px}.screen h2{font-size:26px}.session-head{margin-bottom:22px}.grid2,.grid3,.q-grid,.results,.meta-grid,.logic-columns,.balance-drivers,.calc-overview-grid,.baseline-form{grid-template-columns:1fr}.logic-column{border-right:0!important;border-bottom:1px solid var(--rule);grid-template-columns:1fr 170px;padding:18px 8px}.logic-column:last-child{border-bottom:0}.price-stack{width:170px}.calc-stack-shell{width:min(340px,100%);justify-self:center}.delta{grid-template-columns:1fr}.module{grid-template-columns:38px 1fr 100px}.flow-nav{flex-direction:column-reverse}.flow-nav button{width:100%}.price-order-chart{padding-left:32px}.price-bars{gap:7px}.step-hotspot .abbr{font-size:14px}.step-hotspot .law{font-size:9px}.interactive-formula{font-size:17px}.formula-part{font-size:14px}.example-equation{grid-template-columns:1fr}.example-equation .arrow{transform:rotate(90deg);justify-self:center}}
+@media(max-width:600px){.session-head{grid-template-columns:1fr;align-items:start}.progress-text{white-space:normal}.logic-figure,.price-order-figure{padding:18px 14px}.logic-column{grid-template-columns:1fr;padding:18px 4px}.logic-column h4{grid-column:auto}.logic-note{justify-self:stretch}.price-stack{width:min(210px,100%);justify-self:center}.lesson-check .check-head{align-items:flex-start;flex-direction:column;gap:3px}.module{grid-template-columns:32px 1fr}.module .meta{grid-column:2;text-align:left}.module.completed .meta{grid-column:2}.price-order-chart{padding:18px 2px 0 24px}.price-bars{height:270px;gap:4px}.step-hotspot{padding:6px 2px}.step-hotspot.market{height:250px}.step-hotspot.skf{height:178px}.step-hotspot.skr{height:132px}.step-hotspot.ske{height:92px}.step-hotspot .abbr{font-size:12px}.step-hotspot .law{font-size:8px}.basis-label{font-size:8px}.priority-label{font-size:8px}.lsp-span{font-size:9px}.fixed-curve-grid{grid-template-columns:1fr}.fixed-curves{padding:15px 10px}.fixed-curve-panel{padding:10px 7px 8px}}
+@media print{body{background:#fff;color:#000;font-size:11pt}.side,.session-head,.screen:not(#s-reference),.flow-nav,.no-print{display:none!important}.app,.main{display:block;max-width:none;padding:0}#s-reference{display:block!important}#s-reference .lede{color:#333}.card,.reference-table th,.reference-table td{border-color:#999}}
 </style>
 </head>
 <body>
-
 <div class="app">
-
-  <!-- ================= NAVIGATION ================= -->
-  <aside class="side">
-    <div class="brand">
-      <div class="mark">Mockup / Prototyp</div>
-      <h1>Preisrecht bei<br>öffentlichen Aufträgen</h1>
-    </div>
-    <div class="pfad-label">Lernpfad</div>
-    <ul class="nav" id="nav"></ul>
-    <div class="side-foot">
-      VO PR 30/53<br>
-      LSP Nr. 52<br>
-      Stand: Mockup, ohne Persistenz
-    </div>
+  <aside class="side" aria-label="Seitennavigation">
+    <div class="brand"><div class="mark">Evaluationsprototyp</div><h1>Preisrecht bei<br>öffentlichen Aufträgen</h1></div>
+    <div class="nav-label">Grundlagenpfad · ca. 31 Min.</div>
+    <nav aria-label="Lernpfad"><ul class="nav" id="nav-learning"></ul></nav>
+    <div class="nav-label">Nachschlagen und Konzept</div>
+    <nav aria-label="Werkzeuge"><ul class="nav" id="nav-tools"></ul></nav>
+    <section class="side-contact" aria-label="Kontakt zum Ersteller"><div class="label">Kontakt</div><strong>Simon Schrödl</strong><a href="mailto:simon.schroedl@live.com">simon.schroedl@live.com</a><p>Dieses Lernangebot ist ein Mockup im Rahmen einer Bachelorarbeit.</p></section>
+    <div class="side-foot">PreisV 30/53 · LSP<br>Synthetische Beispieldaten<br>Stand: Prototyp, ohne Persistenz</div>
   </aside>
-
   <main class="main">
+    <div class="session-head" aria-label="Lernfortschritt"><div><div class="label">Abgeschlossene Lerneinheiten</div><div class="progress-track" aria-hidden="true"><i id="progress-bar"></i></div></div><div class="progress-text" id="progress-text" aria-live="polite">0 von 8</div></div>
 
-    <!-- ================= 1 START ================= -->
     <section class="screen" id="s-start">
-      <div class="eyebrow">Modulübersicht</div>
-      <h2>Preisrecht bei öffentlichen Aufträgen</h2>
-      <p class="lede">Vier Module, rund 90 Minuten. Der Lernpfad führt von den Preisarten über die
-      Gewinnermittlung nach der Bonner Formel bis zur Wissensabfrage. Modul 03 enthält die
-      interaktive Simulation.</p>
-
+      <div class="eyebrow">00 / Orientierung</div><h2>Preisrecht verständlich anwenden</h2>
+      <p class="lede">Dieser Grundlagenpfad zeigt, warum sich Entscheidungen bei öffentlichen Aufträgen anders auswirken können als in einer rein marktorientierten Betrachtung. Du lernst die Preistreppe, die Bonner Formel und die kalkulatorischen Zinsen (KAZI) kennen und untersuchst die Anlagenintensität in einer interaktiven Simulation.</p>
+      <div class="quick-actions"><button class="btn" type="button" data-target="s-bedeutung">Grundlagen starten</button><button class="btn secondary" type="button" data-target="s-sim">Direkt zur Simulation</button><button class="btn tertiary" type="button" data-target="s-reference">Zum Nachschlagebereich</button></div>
+      <div class="callout warn"><h4>Einordnung des Prototyps</h4><p>Das Lernangebot sensibilisiert für preisrechtliche Zusammenhänge. Es ersetzt weder eine fachliche Einzelfallprüfung noch eine rechtliche Beratung und darf nicht für reale Angebots-, Investitions- oder Freigabeentscheidungen verwendet werden.</p></div>
+      <figure class="calc-overview">
+        <figcaption class="calc-overview-head"><h3>Gesamtbild der vereinfachten Kalkulation</h3><p>Die Darstellung ordnet Kostenbasis, kalkulatorische Zinsen und Bonner-Formel-Gewinn in einem Bild ein.</p></figcaption>
+        <div class="calc-overview-grid">
+          <div class="calc-story">
+            <h4>Vom Kostenblock zum Selbstkostenpreis</h4>
+            <p>Die Verrechnungsbasis SK III fasst im vereinfachten Lernmodell die relevanten Kostenblöcke zusammen. Auf dieser Basis wird der KAZI-Zuschlagssatz verrechnet. Darüber hinaus wird der Gewinnanteil mit der Bonner Formel bestimmt.</p>
+            <div class="result-equation">Ergebnisbeitrag = Bonner-Gewinn + KAZI-Zinsbetrag</div>
+            <p class="micro">Fahre mit der Maus über einen farbigen Bereich oder wähle ihn per Tab beziehungsweise Klick aus.</p>
+          </div>
+          <div class="calc-stack-shell" aria-label="Interaktiver Aufbau eines Selbstkostenpreises">
+            <div class="calc-price-label">Preis auf Selbstkostenbasis</div>
+            <div class="calc-group result-group"><div class="calc-group-label">Kalkulatorischer Ergebnisbeitrag</div>
+              <button class="calc-hotspot bonner" type="button" data-kind="Ergebnisbeitrag" data-title="Gewinn nach Bonner Formel" data-detail="Die Bonner Formel bestimmt den Gewinnanteil aus Qualifikationsfaktor, Anlagenintensität sowie Eigen- und Fremdleistung.">Gewinn · Bonner Formel</button>
+              <button class="calc-hotspot kazi" type="button" data-kind="Ergebnisbeitrag" data-title="KAZI-Zinsbetrag" data-detail="Der Kunde vergütet den kalkulatorischen Zinsbetrag als eigenen Bestandteil des Selbstkostenpreises. In der hier verwendeten Logik bildet er zusammen mit dem Bonner-Formel-Gewinn den kalkulatorischen Ergebnisbeitrag.">KAZI · kalkulatorische Zinsen</button>
+            </div>
+            <div class="calc-group sk3-group"><div class="calc-group-label">Verrechnungsbasis SK III</div>
+              <button class="calc-hotspot special" type="button" data-kind="Kostenbasis" data-title="Weitere anrechenbare Kosten" data-detail="Je nach Kalkulation können weitere anrechenbare Kostenpositionen in die Verrechnungsbasis eingehen. Ihre konkrete Abgrenzung ist fachlich zu prüfen.">Weitere anrechenbare Kosten</button>
+              <button class="calc-hotspot overheads" type="button" data-kind="Kostenbasis" data-title="Verwaltungs- und Vertriebsgemeinkosten" data-detail="Angemessene und nachgewiesene Gemeinkosten werden nach den anwendbaren Vorgaben in der Kalkulation berücksichtigt.">Verwaltungs- und Vertriebsgemeinkosten</button>
+              <button class="calc-hotspot hk2" type="button" data-kind="Kostenbasis" data-title="Herstellkosten II" data-detail="Die Herstellkosten bilden im vereinfachten Schaubild den unteren Kostenblock. Darauf bauen weitere Kosten- und Ergebnisbestandteile auf.">Herstellkosten II</button>
+            </div>
+          </div>
+        </div>
+        <div class="logic-detail calc-overview-detail" id="calc-overview-detail" aria-live="polite"><div class="kind">Interaktive Gesamtkalkulation</div><h4>Wähle einen Bereich aus</h4><p>Hier erscheint die Erklärung des jeweiligen Kalkulationsbestandteils.</p></div>
+        <p class="source">Eigene interaktive Rekonstruktion nach der bereitgestellten vereinfachten Showroom-Grafik. Darstellung und Begriffe sind für Lernzwecke verdichtet.</p>
+      </figure>
       <div class="module-list" id="module-list"></div>
-
-      <p class="attn">
-        Statischer Screen. Fortschrittsanzeige und Modulfreigabe sind im Mockup nicht implementiert.
-      </p>
     </section>
 
-    <!-- ================= 2 PREISTREPPE ================= -->
-    <section class="screen" id="s-treppe">
-      <div class="eyebrow">Modul 02 / Lerneinheit</div>
-      <h2>Die Preistreppe</h2>
-      <p class="lede">Die VO PR 30/53 gibt eine feste Rangfolge der Preisarten vor. Eine niedrigere
-      Stufe darf erst vereinbart werden, wenn die höhere nachweislich nicht in Betracht kommt.
-      Der Selbstkostenpreis ist damit der Ausnahmefall, nicht der Regelfall.</p>
+    <section class="screen" id="s-bedeutung" hidden>
+      <div class="eyebrow">01 / Bedeutung und Anwendungsbereich · ca. 2 Min.</div><h2>Warum das Preisrecht relevant ist</h2>
+      <p class="lede">Das deutsche Preisrecht für öffentliche Aufträge bildet einen besonderen Regelungsrahmen. Es soll vor überhöhten Preisen schützen und legt fest, wie Preise zu bestimmen sind, wenn Wettbewerb und Marktvergleich nicht ausreichen.</p>
+      <div class="learning-goal"><div class="icon">!</div><div><b>Lernziel</b><p>Du kannst Ursprung und Zweck des öffentlichen Preisrechts einordnen und erklären, warum Investitionen den kalkulatorischen Gewinn beeinflussen können.</p></div></div>
+      <div class="grid3"><article class="card"><div class="panel-title">Entstehung</div><h3>Deutscher Regelungsrahmen</h3><p>Grundlage ist das Preisgesetz von 1948. Die PreisV 30/53 wurde 1953 erlassen und gilt seit 1954 für Preise bei öffentlichen Aufträgen in ihrem Anwendungsbereich.</p></article><article class="card"><div class="panel-title">Schutzfunktion</div><h3>Verantwortung für öffentliche Mittel</h3><p>Marktpreise haben Vorrang. Fehlt ein belastbarer Wettbewerbspreis, begrenzen die Regeln für Selbstkostenpreise die anrechenbaren Kosten und schützen dadurch vor überhöhten Preisen.</p></article><article class="card"><div class="panel-title">Anreizwirkung</div><h3>Substanz und Kompetenzen</h3><p>Anerkannte Investitionen und Eigenleistungen können kalkulatorische Zinsen und Gewinn beeinflussen. Dadurch können Anreize für betriebsnotwendige Substanz und eigene Kompetenzen entstehen.</p></article></div>
+      <p class="source">Einordnung nach PreisG, PreisV 30/53 sowie LSP Nr. 43 und 51–52. Die investitionsbegünstigende Wirkung ist keine allgemeine gesetzliche Förderzusage, sondern kann sich aus der Berechnungssystematik ergeben.</p>
+      <div class="callout"><h4>Orientierung statt Vollqualifizierung</h4><p>Der Grundlagenpfad soll relevante Fragestellungen erkennbar machen und zeigen, wann fachliche Unterstützung einzubeziehen ist. Er bildet keine vollständige Qualifizierung für Preisprüfungen.</p></div>
+    </section>
 
-      <div class="card">
-        <div class="treppe">
-          <div class="stufe">
-            <div class="para">§ 4</div>
-            <div>
-              <h4>Marktpreis</h4>
-              <p>Vorrangig zu vereinbaren. Setzt einen im Verkehr üblichen Preis für eine
-              marktgängige Leistung voraus. Solange ein Marktpreis feststellbar ist, ist jede
-              Selbstkostenkalkulation ausgeschlossen.</p>
+    <section class="screen" id="s-logik" hidden>
+      <div class="eyebrow">03 / Zwei Preislogiken · ca. 3 Min.</div><h2>Marktlogik und Preisrechtslogik</h2>
+      <p class="lede">Die wirtschaftliche Beurteilung einer Entscheidung hängt davon ab, wie der Preis zustande kommt. Die interaktive Darstellung überträgt die Kernaussage des bestehenden Showrooms in den digitalen Lernpfad.</p>
+      <div class="learning-goal"><div class="icon">↔</div><div><b>Lernziel</b><p>Du kannst Marktpreisbildung und Selbstkostenpreisbildung auf einer grundlegenden Ebene voneinander abgrenzen.</p></div></div>
+      <figure class="logic-figure">
+        <figcaption class="logic-figure-title"><h3>Entstehung von Preis und Gewinn</h3><p>Fahre mit der Maus über einen Bereich oder wähle ihn mit Tab beziehungsweise Klick aus.</p></figcaption>
+        <div class="logic-columns"> 
+          <article class="logic-column">
+            <h4>Zivil- beziehungsweise Marktgeschäft</h4>
+            <div class="logic-note"><b>Die Gewinnhöhe ist variabel.</b><ul><li>abhängig vom erzielbaren Marktpreis</li><li>abhängig von den gesamten Kosten</li></ul></div>
+            <div class="price-stack">
+              <div class="price-caption">Am Markt erzielbarer Preis</div>
+              <button class="price-line logic-hotspot" type="button" aria-label="Am Markt erzielbarer Preis erklären" data-kind="Marktgeschäft" data-title="Am Markt erzielbarer Preis" data-detail="Der Preis wird wesentlich durch Angebot, Nachfrage, Wettbewerb und Zahlungsbereitschaft geprägt. Die internen Kosten bestimmen den Marktpreis nicht unmittelbar."></button>
+              <div class="stack-segments">
+                <button class="logic-hotspot variable" type="button" data-kind="Marktgeschäft" data-title="Variabler Gewinn" data-detail="Der Gewinn ergibt sich vereinfacht aus der Differenz zwischen dem erzielbaren Marktpreis und den gesamten Kosten. Er ist deshalb nicht vorab garantiert.">↕ <span>variabler Gewinn</span></button>
+                <button class="logic-hotspot overhead" type="button" data-kind="Marktgeschäft" data-title="Gemeinkosten" data-detail="Gemeinkosten sind Teil der unternehmensinternen Kostenstruktur. Sie beeinflussen die Wirtschaftlichkeit, können aber nicht unabhängig vom Markt auf den Preis aufgeschlagen werden.">Gemeinkosten</button>
+                <button class="logic-hotspot cost" type="button" data-kind="Marktgeschäft" data-title="Leistungskosten" data-detail="Hierzu gehören im vereinfachten Bild interne und externe Aufwendungen der Leistungserstellung. Zusammen mit den Gemeinkosten bilden sie die Gesamtkosten.">Interner und externer Aufwand</button>
+              </div>
             </div>
-          </div>
-          <div class="stufe">
-            <div class="para">§ 5</div>
-            <div>
-              <h4>Selbstkostenfestpreis</h4>
-              <p>Wird vor Auftragsbeginn auf Basis einer Vorkalkulation fest vereinbart. Das
-              Kalkulationsrisiko liegt beim Auftragnehmer, spätere Kostenabweichungen ändern den
-              Preis nicht mehr.</p>
+          </article>
+          <article class="logic-column">
+            <h4>Verteidigungsgeschäft mit Selbstkostenpreis</h4>
+            <div class="logic-note"><b>Der Preis folgt preisrechtlichen Vorgaben.</b><ul><li>Ausgangspunkt sind anrechenbare Kosten</li><li>Bonner-Formel-Gewinn und KAZI bilden den kalkulatorischen Ergebnisbeitrag</li></ul></div>
+            <div class="price-stack">
+              <div class="price-caption">Preis auf Selbstkostenbasis</div>
+              <button class="price-line logic-hotspot" type="button" aria-label="Preis auf Selbstkostenbasis erklären" data-kind="Selbstkostenpreis" data-title="Preis auf Selbstkostenbasis" data-detail="Der Selbstkostenpreis setzt sich im vereinfachten Lernmodell aus den anrechenbaren Kosten, dem KAZI-Zinsbetrag und dem Gewinnanteil nach Bonner Formel zusammen."></button>
+              <div class="stack-segments">
+                <button class="logic-hotspot profit" type="button" data-kind="Selbstkostenpreis" data-title="Kalkulatorischer Ergebnisbeitrag" data-detail="In der hier verwendeten Kalkulationslogik setzt sich der Ergebnisbeitrag aus dem Gewinn nach Bonner Formel und dem vom Kunden vergüteten KAZI-Zinsbetrag zusammen. Er ist keine frei gewählte Marge.">Bonner Gewinn + KAZI</button>
+                <button class="logic-hotspot overhead" type="button" data-kind="Selbstkostenpreis" data-title="Gemeinkosten" data-detail="Berücksichtigt werden nur angemessene, zurechenbare und nachweisbare Gemeinkosten nach den jeweils anwendbaren Vorgaben.">Gemeinkosten</button>
+                <button class="logic-hotspot cost" type="button" data-kind="Selbstkostenpreis" data-title="Prüffähige Leistungskosten" data-detail="Interne und externe Aufwendungen müssen angemessen, zurechenbar und prüffähig dokumentiert sein. Nicht jede betriebliche Ausgabe ist automatisch preisrechtlich anrechenbar.">Interner und externer Aufwand</button>
+              </div>
             </div>
-          </div>
-          <div class="stufe">
-            <div class="para">§ 6</div>
-            <div>
-              <h4>Selbstkostenrichtpreis</h4>
-              <p>Vorläufiger Preis, wenn die Kosten vorab noch nicht sicher kalkulierbar sind.
-              Wird nach Wegfall der Unsicherheit in einen Festpreis überführt.</p>
-            </div>
-          </div>
-          <div class="stufe">
-            <div class="para">§ 7</div>
-            <div>
-              <h4>Selbstkostenerstattungspreis</h4>
-              <p>Letzte Stufe. Abrechnung nach tatsächlich angefallenen Kosten auf Grundlage der
-              Nachkalkulation. Nur zulässig, wenn keine der vorrangigen Preisarten in Betracht kommt.</p>
-            </div>
-          </div>
+          </article>
         </div>
+        <div class="logic-detail" id="logic-detail" aria-live="polite"><div class="kind">Interaktive Grafik</div><h4>Wähle einen Bereich aus</h4><p>Die Erläuterung des jeweiligen Preis-, Gewinn- oder Kostenbestandteils erscheint hier.</p></div>
+        <p class="source">Eigene interaktive Darstellung in Anlehnung an die bereitgestellte Showroom-Grafik; für Lernzwecke fachlich vereinfacht.</p>
+      </figure>
+      <div class="callout signal"><h4>Merksatz</h4><p>Im Marktgeschäft begrenzt der erzielbare Marktpreis den Gewinn. Beim hier betrachteten Selbstkostenpreis werden die anrechenbaren Kosten um den KAZI-Zinsbetrag und den Gewinn nach Bonner Formel ergänzt. Selbstkostenpreise bleiben gegenüber Marktpreisen nachrangig.</p></div>
+    </section>
+
+    <section class="screen" id="s-treppe" hidden>
+      <div class="eyebrow">02 / Preisarten und Preistreppe · ca. 4 Min.</div><h2>Die Prüflogik der Preisarten</h2>
+      <p class="lede">Die PreisV 30/53 ordnet Markt- und Selbstkostenpreise in einer Rangfolge. Die Paragraphen zeigen zugleich, dass § 5 das Prüftor für Selbstkostenpreise bildet und § 6 zwei Preisarten gemeinsam regelt.</p>
+      <div class="learning-goal"><div class="icon">↓</div><div><b>Lernziel</b><p>Du kannst die Rangfolge der Preisarten beschreiben und die einschlägigen Regelungsbereiche zuordnen.</p></div></div>
+      <figure class="price-order-figure">
+        <figcaption class="price-order-head"><h3>Vorrang und Kostenbasis der Preisarten</h3><p>Fahre mit der Maus über eine Stufe oder wähle sie mit Tab beziehungsweise Klick aus.</p></figcaption>
+        <div class="price-order-chart">
+          <div class="priority-label">Vorrang</div>
+          <div class="price-bars">
+            <div class="price-bar-wrap"><button class="step-hotspot market" type="button" data-kind="Wettbewerb und Markt" data-title="Marktpreis" data-detail="Marktpreise besitzen grundsätzlich Vorrang. Maßgeblich ist der verkehrsübliche Preis auf dem allgemeinen oder besonderen Markt nach den Vorgaben der §§ 3 und 4 PreisV 30/53."><span class="abbr">Marktpreis</span><span class="law">§§ 3–4</span></button><div class="basis-label">Markt- und Wettbewerbsdaten</div></div>
+            <div class="price-bar-wrap"><button class="step-hotspot skf" type="button" data-kind="Selbstkostenpreis" data-title="Selbstkostenfestpreis (SKF)" data-detail="Der Festpreis wird auf Grundlage einer Vorkalkulation festgelegt. Innerhalb der Selbstkostenpreise ist er möglichst vorzuziehen."><span class="abbr">SKF</span><span class="law">§ 6 Abs. 2</span></button><div class="basis-label">Plankosten</div></div>
+            <div class="price-bar-wrap"><button class="step-hotspot skr" type="button" data-kind="Selbstkostenpreis" data-title="Selbstkostenrichtpreis (SKR)" data-detail="Der Richtpreis ist zunächst vorläufig. Er soll möglichst vor Ende der Fertigung in einen Selbstkostenfestpreis umgewandelt werden."><span class="abbr">SKR</span><span class="law">§ 6 Abs. 3</span></button><div class="basis-label">Plan- und Istkosten</div></div>
+            <div class="price-bar-wrap"><button class="step-hotspot ske" type="button" data-kind="Selbstkostenpreis" data-title="Selbstkostenerstattungspreis (SKE)" data-detail="Der Erstattungspreis ist die nachrangigste Preisart. Er kommt nur in Betracht, wenn eine andere Preisermittlung nicht möglich ist, und stützt sich auf die tatsächlich angefallenen erstattungsfähigen Kosten."><span class="abbr">SKE</span><span class="law">§ 7</span></button><div class="basis-label">Istkosten</div></div>
+          </div>
+          <div class="lsp-span">Ermittlung der Selbstkosten nach den LSP</div>
+          <div class="competition-axis"><span>funktionierender Wettbewerb</span><span>kein belastbarer Wettbewerbspreis</span></div>
+        </div>
+        <div class="logic-detail" id="price-order-detail" aria-live="polite"><div class="kind">Interaktive Preistreppe</div><h4>Wähle eine Preisart aus</h4><p>Hier erscheint, wie die jeweilige Preisart ermittelt wird und welchen Rang sie besitzt.</p></div>
+        <p class="source">Eigene interaktive Darstellung in Anlehnung an die bereitgestellte Showroom-Grafik; Rechtsgrundlage: PreisV 30/53, insbesondere §§ 3–8.</p>
+      </figure>
+      <div class="card"><div class="treppe">
+        <div class="stufe"><div class="para">§ 4</div><div><h4>Marktpreis</h4><p>Marktpreise besitzen grundsätzlich Vorrang. Zuerst ist zu prüfen, ob für die Leistung ein Preis nach den Marktpreisregeln festgestellt werden kann.</p></div></div>
+        <div class="stufe"><div class="para">§ 5</div><div><h4>Prüftor Selbstkostenpreis</h4><p>§ 5 beschreibt die Voraussetzungen, unter denen Selbstkostenpreise ausnahmsweise vereinbart werden dürfen, und verweist auf die Preisarten der §§ 6 und 7.</p></div></div>
+        <div class="stufe"><div class="para">§ 6 Abs. 1–2</div><div><h4>Selbstkostenfestpreis</h4><p>Er ist innerhalb der Selbstkostenpreise möglichst zu vereinbaren und wird auf Grundlage einer Kalkulation spätestens unmittelbar nach Vertragsabschluss festgelegt.</p></div></div>
+        <div class="stufe"><div class="para">§ 6 Abs. 3</div><div><h4>Selbstkostenrichtpreis</h4><p>Kann ein Festpreis zunächst nicht festgestellt werden, wird ein vorläufiger Richtpreis vereinbart und möglichst vor Ende der Fertigung in einen Festpreis umgewandelt.</p></div></div>
+        <div class="stufe"><div class="para">§ 7</div><div><h4>Selbstkostenerstattungspreis</h4><p>Er darf nur vereinbart werden, wenn eine andere Preisermittlung nicht möglich ist. Die Abrechnung orientiert sich an den tatsächlich angefallenen, erstattungsfähigen Kosten.</p></div></div>
+      </div><div class="callout"><h4>Ermittlung nach den LSP</h4><p>§ 8 verweist für die Ermittlung von Selbstkostenpreisen auf die Leitsätze für die Preisermittlung aufgrund von Selbstkosten.</p></div><p class="source">Rechtsgrundlage: PreisV 30/53, insbesondere §§ 1 und 4–8. Darstellung für Lernzwecke vereinfacht.</p></div>
+    </section>
+
+    <section class="screen" id="s-formel" hidden>
+      <div class="eyebrow">04 / Bonner Formel · ca. 4 Min.</div><h2>Bonner Formel und Anlagenintensität</h2>
+      <p class="lede">Für bestimmte Verträge des Verteidigungsressorts kann die Bonner Formel zur Vereinbarung des kalkulatorischen Gewinns verwendet werden. Sie ist keine allgemeine gesetzliche Gewinnformel für sämtliche öffentlichen Aufträge.</p>
+      <div class="learning-goal"><div class="icon">ƒ</div><div><b>Lernziel</b><p>Du kannst die Bestandteile der Formel erklären und erkennen, wie Anlagenintensität sowie Eigen- und Fremdleistung die Gewinnbemessung beeinflussen.</p></div></div>
+      <div class="interactive-formula" id="bonn-formula" aria-label="Interaktive Bonner Formel">
+        <button class="formula-part" type="button" data-kind="Ergebnisgröße" data-title="G – Gewinn nach Bonner Formel" data-detail="G ist der mit der Bonner Formel berechnete Gewinnanteil. Im hier verwendeten Modell bildet er gemeinsam mit dem KAZI-Zinsbetrag den kalkulatorischen Ergebnisbeitrag.">G</button>
+        <span class="formula-op">=</span>
+        <button class="formula-part regulated" type="button" data-kind="Vorgegebener Faktor" data-title="0,05 – fünf Prozent auf den Make-Anteil" data-detail="Der Eigenleistungsanteil beginnt mit einer Gewichtung von 5 Prozent. Qualifikationsfaktor und Anlagenintensität verändern diesen Teil der Gewinnbemessung.">0,05</button>
+        <span class="formula-op">× (</span>
+        <button class="formula-part regulated" type="button" data-kind="Vorgegebener Faktor" data-title="Q – Qualifikationsfaktor" data-detail="Q richtet sich nach dem Vertragstyp: 0,70 für Instandsetzung, 1,05 für Beschaffung beziehungsweise Produktion und 1,10 für Studien-, Forschungs- und Entwicklungsverträge.">Q</button>
+        <span class="formula-op">+</span>
+        <button class="formula-part regulated" type="button" data-kind="Vorgegebener Faktor" data-title="1,5 – Gewichtung der Anlagenintensität" data-detail="Der Faktor 1,5 verstärkt den Einfluss der Anlagenintensität auf den eigenleistungsbezogenen Gewinnanteil.">1,5</button>
+        <span class="formula-op">×</span>
+        <button class="formula-part individual fraction-part" type="button" data-kind="Unternehmensindividuelle Größe" data-title="Anlagenintensität" data-detail="Die Anlagenintensität ist das Verhältnis des betriebsnotwendigen Anlagevermögens zum gesamten betriebsnotwendigen Vermögen. Dabei gilt: BNV = BNAV + UV."><span class="formula-fraction"><span class="top">BNAV</span><span class="bottom">BNAV + UV</span></span></button>
+        <span class="formula-op">)</span><span class="formula-op">×</span>
+        <button class="formula-part individual" type="button" data-kind="Unternehmensindividuelle Größe" data-title="E – Eigenleistung (Make)" data-detail="E steht für die Eigenleistung. Im Lernmodell ergibt sie sich aus den Netto-Selbstkosten abzüglich Fertigungsmaterial und Fremdleistungen F.">E</button>
+        <span class="formula-op">+</span>
+        <button class="formula-part regulated" type="button" data-kind="Vorgegebener Faktor" data-title="0,01 – ein Prozent auf den Buy-Anteil" data-detail="Fertigungsmaterial und Fremdleistungen werden im zweiten Formelteil mit 1 Prozent gewichtet.">0,01</button>
+        <span class="formula-op">×</span>
+        <button class="formula-part individual" type="button" data-kind="Unternehmensindividuelle Größe" data-title="F – Fertigungsmaterial und Fremdleistungen (Buy)" data-detail="F umfasst Fertigungsmaterial und Fremdleistungen. Dieser Buy-Anteil wird anders gewichtet als die Eigenleistung E.">F</button>
       </div>
-
-      <p class="attn">
-        Statischer Screen. Inhalte sind Platzhalter und vor Verwendung gegen VO PR 30/53 und
-        Kommentierung zu prüfen.
-      </p>
+      <div class="formula-legend"><span><i class="regulated"></i>durch Erlass beziehungsweise Vertragsregelung vorgegeben</span><span><i class="individual"></i>aus Unternehmens- und Kalkulationsdaten abgeleitet</span></div>
+      <div class="logic-detail formula-detail" id="bonn-formula-detail" aria-live="polite"><div class="kind">Interaktive Formel</div><h4>Wähle einen Bestandteil aus</h4><p>Die deutsche Erläuterung des jeweiligen Faktors erscheint hier.</p></div>
+      <div class="grid2" style="margin-top:18px"><article class="card"><div class="panel-title">Make-or-buy-Logik</div><h3>5 Prozent auf Make, 1 Prozent auf Buy</h3><p>Der eigenleistungsbezogene Formelteil wird mit 0,05 sowie zusätzlich mit Q und Anlagenintensität gewichtet. Fertigungsmaterial und Fremdleistungen gehen mit 0,01 ein. Deshalb kann eine Verlagerung zwischen E und F den kalkulatorischen Gewinn verändern.</p></article><article class="card"><div class="panel-title">Vermögensstruktur</div><h3>BNAV im Verhältnis zu BNAV + UV</h3><p>Nur betriebsnotwendiges Vermögen ist relevant. Steigt bei gleichbleibenden übrigen Eingangsgrößen der Anteil des BNAV am gesamten betriebsnotwendigen Vermögen, steigt im Lernmodell der eigenleistungsbezogene Gewinnanteil.</p></article></div>
+      <div class="q-grid" aria-label="Qualifikationsfaktoren"><div class="q-item"><b>0,70</b><span>Instandsetzungsvertrag</span></div><div class="q-item"><b>1,05</b><span>Beschaffungsvertrag</span></div><div class="q-item"><b>1,10</b><span>Studien-, Forschungs- und Entwicklungsvertrag</span></div></div>
+      <div class="callout signal"><h4>Wirkungszusammenhang</h4><p>Steigt bei ansonsten gleichen Eingangsgrößen das Verhältnis BNAV/BNV, erhöht der mit 1,5 gewichtete Term den kalkulatorischen Gewinn des Lernmodells.</p></div>
+      <p class="source">Eigene interaktive Darstellung in Anlehnung an die bereitgestellte Showroom-Grafik. Fachliche Grundlage: Bonner Formel gemäß den für den Verteidigungsbereich verwendeten Vertragsbedingungen; für Lernzwecke vereinfacht.</p>
     </section>
 
-    <!-- ================= 3 SIMULATION ================= -->
-    <section class="screen" id="s-sim">
-      <div class="eyebrow">Modul 03 / Interaktive Simulation</div>
-      <h2>Kalkulatorischer Gewinn nach der Bonner Formel</h2>
-      <p class="lede">Verändere die Vermögensstruktur und beobachte den Gewinnzuschlag.
-      Betriebswirtschaftlich würde man erwarten, dass ein hoher Anlagenbestand den Zuschlag senkt.
-      Die Formel bewirkt das Gegenteil.</p>
+    <section class="screen" id="s-decisions" hidden>
+      <div class="eyebrow">05 / Betriebliche Entscheidungen · ca. 3 Min.</div><h2>Investitionen und Make-or-buy mitdenken</h2>
+      <p class="lede">Die Formel macht sichtbar, warum Vermögens- und Leistungsstruktur zusätzliche preisrechtliche Effekte entfalten können. Diese Effekte dürfen jedoch nie isoliert als Entscheidungsempfehlung verstanden werden.</p>
+      <div class="learning-goal"><div class="icon">?</div><div><b>Lernziel</b><p>Du erkennst, bei welchen Entscheidungssituationen eine frühzeitige fachliche Prüfung sinnvoll ist.</p></div></div>
+      <div class="grid2"><article class="card decision-card"><div class="panel-title">Investitionsentscheidung</div><h3>Anlagevermögen</h3><p>Erhöht eine Investition das anerkannte betriebsnotwendige Anlagevermögen, kann sich dadurch die Anlagenintensität und damit der kalkulatorische Gewinn verändern.</p><ul><li>Ist das Vermögen betriebsnotwendig?</li><li>Welche Kosten- und Kapitalwirkungen entstehen?</li><li>Welche weiteren wirtschaftlichen Kriterien sind relevant?</li></ul></article><article class="card decision-card"><div class="panel-title">Make-or-buy</div><h3>Eigen- und Fremdleistung</h3><p>Eigenleistung E und Fertigungsmaterial beziehungsweise Fremdleistungen F werden in der Formel unterschiedlich berücksichtigt. Eine Verschiebung kann deshalb die Gewinnbemessung verändern.</p><ul><li>Wie verändern sich E und F?</li><li>Welche qualitativen und operativen Folgen entstehen?</li><li>Ist eine preisrechtliche Einzelfallprüfung erforderlich?</li></ul></article></div>
+      <div class="callout warn"><h4>Keine isolierte Optimierung</h4><p>Kosten, Risiken, Kapazitäten, Qualität, Vertragsbedingungen und preisrechtliche Anerkennung bleiben entscheidend. Die Formel bildet nur einen Ausschnitt der Entscheidungssituation ab.</p></div>
+    </section>
 
-      <div id="quellenhinweis">
-        <b>Offen</b><br>
-        Bezeichnungen, Einheiten und Wertebereiche der Größen Q, E und F sind aus der Primärquelle
-        zu ergänzen (Erlass BMVg vom 27.06.1989 bzw. Ebisch/Gottschalk, Rdn. 8 zu Nr. 52 LSP).
-        Alle Werte im Block <code>PARAMS</code> am Anfang des Skripts. Diese Leiste danach löschen.
+    <section class="screen" id="s-kzi" hidden>
+      <div class="eyebrow">06 / Kalkulatorische Zinsen · ca. 4 Min.</div><h2>KAZI und betriebsnotwendiges Kapital</h2>
+      <p class="lede">KAZI steht in diesem Lernpfad für kalkulatorische Zinsen. Der Kunde vergütet den daraus ermittelten Zinsbetrag als Bestandteil des Selbstkostenpreises. In der hier verwendeten Kalkulationslogik trägt er neben dem Bonner-Formel-Gewinn zum kalkulatorischen Ergebnis bei.</p>
+      <div class="learning-goal"><div class="icon">%</div><div><b>Lernziel</b><p>Du kannst die KAZI-Formel erklären, ihre Einflussgrößen erkennen und den KAZI-Zinsbetrag in die gesamte Gewinnlogik einordnen.</p></div></div>
+      <div class="interactive-formula" id="kazi-formula" aria-label="Interaktive KAZI-Formel">
+        <button class="formula-part" type="button" data-kind="Ergebnisgröße" data-title="KAZI – Zuschlagssatz für kalkulatorische Zinsen" data-detail="KAZI ist hier der prozentuale Zuschlagssatz auf die Verrechnungsbasis SK III. Multipliziert mit dieser Basis ergibt er den vom Kunden vergüteten kalkulatorischen Zinsbetrag.">KAZI</button>
+        <span class="formula-op">=</span>
+        <button class="formula-part regulated" type="button" data-kind="Vorgegebener Faktor" data-title="6 Prozent Verzinsung" data-detail="Die Showroom-Formel verwendet für die kalkulatorische Verzinsung des betriebsnotwendigen Kapitals einen Satz von 6 Prozent. Der im konkreten Vertrag anwendbare Satz ist fachlich zu prüfen.">6 %</button>
+        <span class="formula-op">×</span>
+        <span class="formula-fraction">
+          <span class="top"><button class="formula-part individual" type="button" data-kind="Unternehmensindividuelle Größe" data-title="BNAV – betriebsnotwendiges Anlagevermögen" data-detail="BNAV umfasst die betriebsnotwendigen Teile des Anlagevermögens, beispielsweise eingesetzte Anlagen oder betriebsnotwendige Immobilien. Die Anerkennung ist im Einzelfall zu prüfen.">BNAV</button> <span class="formula-op">+</span> <button class="formula-part individual" type="button" data-kind="Unternehmensindividuelle Größe" data-title="UV – betriebsnotwendiges Umlaufvermögen" data-detail="UV umfasst betriebsnotwendige Teile des Umlaufvermögens, etwa Vorräte, unfertige Erzeugnisse, geleistete Anzahlungen oder bestimmte Forderungen.">UV</button> <span class="formula-op">−</span> <button class="formula-part individual" type="button" data-kind="Unternehmensindividuelle Größe" data-title="Abzugskapital" data-detail="Zinslos zur Verfügung stehende Finanzierungsteile werden abgezogen. Dazu gehören insbesondere anrechenbare erhaltene Voraus- und Anzahlungen sowie bestimmte zinsfreie Lieferantenverbindlichkeiten.">Abzugskapital</button></span>
+          <span class="bottom"><button class="formula-part individual" type="button" data-kind="Unternehmensindividuelle Größe" data-title="Verrechnungsbasis SK III" data-detail="Durch die Verrechnungsbasis SK III wird der Zinsbetrag in einen Zuschlagssatz umgerechnet. Der Satz kann anschließend auf dieselbe Basis angewendet werden.">Verrechnungsbasis SK III</button></span>
+        </span>
       </div>
-
-      <div class="sim">
-
-        <!-- Eingaben -->
-        <div class="card">
-          <div class="panel-title">Eingangsgrößen</div>
-
-          <div class="szenarien">
-            <button type="button" data-szenario="anlage">Anlagenintensiv</button>
-            <button type="button" data-szenario="personal">Personalintensiv</button>
-          </div>
-
-          <div id="felder"></div>
-
-          <hr class="trenner">
-          <div class="abgeleitet">
-            <span>BNV = BNAV + BNUV</span>
-            <span id="out-bnv" class="num"></span>
-          </div>
-          <div class="abgeleitet" style="margin-top:7px">
-            <span>Anlagenintensität BNAV / BNV</span>
-            <span id="out-quote" class="num"></span>
-          </div>
-        </div>
-
-        <!-- Ergebnis -->
-        <div>
-          <div class="ergebnis">
-            <div class="kpi hero">
-              <div class="k">Kalkulatorischer Gewinn G</div>
-              <div class="v" id="out-g"></div>
-            </div>
-            <div class="kpi">
-              <div class="k">In % der Selbstkosten</div>
-              <div class="v" id="out-pct"></div>
-            </div>
-          </div>
-
-          <div class="panel-title" style="margin-bottom:10px">Rechenweg</div>
-          <div class="rechenweg" id="rechenweg"></div>
-
-          <div class="kurve" style="margin-top:20px">
-            <div class="panel-title" style="border:0;padding:0;margin-bottom:14px">
-              Gewinnzuschlag in Abhängigkeit von der Anlagenintensität
-            </div>
-            <svg id="chart" viewBox="0 0 660 280" role="img"
-                 aria-label="Der Gewinnzuschlag steigt linear mit der Anlagenintensität."></svg>
-            <div class="legende">
-              <span><i style="border-color:#B02A26"></i>Bonner Formel, berechnet</span>
-              <span><i style="border-color:#A9B5C6;border-top-style:dashed"></i>Betriebswirtschaftliche Erwartung, nur illustrativ</span>
-            </div>
-          </div>
-
-          <div class="pointe">
-            <h4>Die didaktische Pointe</h4>
-            <p id="pointe-text"></p>
-          </div>
-        </div>
+      <div class="formula-legend"><span><i class="regulated"></i>in der Showroom-Formel vorgegebener Satz</span><span><i class="individual"></i>unternehmensindividuell aus Bilanz und Betriebsrechnung ermittelt</span></div>
+      <div class="logic-detail formula-detail" id="kazi-formula-detail" aria-live="polite"><div class="kind">Interaktive Formel</div><h4>Wähle einen Bestandteil aus</h4><p>Die deutsche Erläuterung der jeweiligen Größe erscheint hier.</p></div>
+      <div class="balance-drivers" aria-label="Haupttreiber des betriebsnotwendigen Kapitals">
+        <article class="driver-card"><div class="driver-head"><span class="driver-sign">+</span><h3>1. BNAV</h3></div><ul><li>betriebsnotwendiges Anlagevermögen</li><li>betrieblich genutzte Immobilien</li><li>betriebsnotwendige Finanzanlagen</li></ul></article>
+        <article class="driver-card"><div class="driver-head"><span class="driver-sign">+</span><h3>2. Umlaufvermögen</h3></div><ul><li>Roh-, Hilfs- und Betriebsstoffe</li><li>unfertige Erzeugnisse</li><li>geleistete Anzahlungen und relevante Forderungen</li></ul></article>
+        <article class="driver-card minus"><div class="driver-head"><span class="driver-sign">−</span><h3>3. Abzugskapital</h3></div><ul><li>bestimmte Lieferantenverbindlichkeiten</li><li>erhaltene Voraus- und Anzahlungen</li><li>weitere zinslos bereitgestellte Kapitalteile</li></ul></article>
       </div>
+      <div class="callout"><h4>Merke: geleistet oder erhalten?</h4><p>Geleistete Anzahlungen können das Umlaufvermögen erhöhen. Erhaltene Anzahlungen können dagegen als zinsloses Abzugskapital die verzinsliche Kapitalbasis vermindern. Ob und in welcher Höhe ein Bilanzposten eingeht, muss fachlich abgegrenzt werden.</p></div>
+      <div class="card"><div class="panel-title">Vereinfachtes Rechenbeispiel</div><div class="example-equation"><div><div class="result">6 % × (12 + 8 − 5) / 30 = 3,00 % KAZI</div><p class="micro" style="margin:6px 0 0">BNK: 15 Mio. € · Verrechnungsbasis SK III: 30 Mio. €</p></div><div class="arrow" aria-hidden="true">→</div><div><div class="result">3,00 % × 30 Mio. € = 0,90 Mio. €</div><p class="micro" style="margin:6px 0 0">kalkulatorischer Zinsbetrag</p></div></div></div>
+      <div class="callout signal"><h4>Zusammenspiel mit der Bonner Formel</h4><p>Die Bonner Formel und KAZI erfüllen unterschiedliche Rechenfunktionen, wirken im hier verwendeten Modell jedoch zusammen: Der kalkulatorische Ergebnisbeitrag besteht aus dem Gewinn nach Bonner Formel und dem vom Kunden vergüteten KAZI-Zinsbetrag.</p></div>
+      <p class="source">Eigene interaktive Darstellung in Anlehnung an die bereitgestellten Showroom-Grafiken. Fachliche Grundlage: LSP Nr. 43–44 und die im Verteidigungsbereich verwendete Vertragsregelung; für Lernzwecke vereinfacht.</p>
     </section>
 
-    <!-- ================= 4 QUIZ ================= -->
-    <section class="screen" id="s-quiz">
-      <div class="eyebrow">Modul 04 / Wissensabfrage</div>
-      <h2>Drei Fragen zur Kontrolle</h2>
-      <p class="lede">Eine Antwort je Frage. Die Auflösung erscheint direkt nach der Auswahl.</p>
-      <div id="quiz"></div>
-      <div class="quizstand" id="quizstand"></div>
-      <p class="attn">
-        Ergebnisse werden im Mockup nicht gespeichert. Ein Neuladen der Seite setzt die Abfrage zurück.
-      </p>
-    </section>
-
-    <!-- ================= 5 ROLLEN ================= -->
-    <section class="screen" id="s-rollen">
-      <div class="eyebrow">Verwaltung</div>
-      <h2>Rollen und Lernfortschritt</h2>
-      <p class="lede">Das Rollen- und Berechtigungskonzept wird als Screen dargestellt und im Text
-      beschrieben. Es ist im Mockup nicht implementiert.</p>
-
-      <div class="grid2">
-        <div class="card">
-          <div class="panel-title">Berechtigungen</div>
-          <table class="roll">
-            <thead>
-              <tr><th>Rolle</th><th>Module</th><th class="c">Simulation</th><th class="c">Auswertung</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Lernende</td><td>Zugewiesener Pfad</td><td class="c">lesend</td><td class="c">eigene</td></tr>
-              <tr><td>Fachexperte</td><td>alle</td><td class="c">Parameter</td><td class="c">eigene</td></tr>
-              <tr><td>Schulungsleitung</td><td>alle</td><td class="c">Parameter</td><td class="c">Gruppe</td></tr>
-              <tr><td>Administration</td><td>Pflege</td><td class="c">Konfiguration</td><td class="c">gesamt</td></tr>
-            </tbody>
-          </table>
+    <section class="screen" id="s-sim" hidden>
+      <div class="eyebrow">07 / Interaktive Simulation · ca. 8 Min.</div><h2>Gewinnlogik im Szenariovergleich</h2>
+      <p class="lede">Lege zuerst die Netto-Selbstkosten des Ausgangsszenarios fest. Mit „Ausgang fixieren“ frierst du alle Referenzwerte ein. Danach verändern die Stellhebel ausschließlich das Vergleichsszenario.</p>
+      <div class="baseline-setup">
+        <div class="panel-title">Ausgangsszenario vorbereiten und fixieren</div>
+        <div class="baseline-form">
+          <div class="field"><label for="base-N-input">Netto-Selbstkosten in Euro<span class="hint">Z. B. 10.000.000 oder 2 Mrd.; zulässig bis 100 Mrd. €</span></label><input type="text" inputmode="decimal" id="base-N-input" value="10.000.000" autocomplete="off" aria-describedby="baseline-error"></div>
+          <div class="field"><label for="base-Q-input">Vertragstyp und Faktor Q</label><select id="base-Q-input"><option value="0.70">Instandsetzung · Q = 0,70</option><option value="1.05" selected>Beschaffung · Q = 1,05</option><option value="1.10">Studie, Forschung oder Entwicklung · Q = 1,10</option></select></div>
+          <button class="btn" id="lock-baseline" type="button">Ausgang fixieren</button>
         </div>
-
-        <div class="card">
-          <div class="panel-title">Lernfortschritt, Beispieldaten</div>
-          <div class="fort"><div><div class="t">01 Grundlagen und Anwendungsbereich</div><div class="bar"><i style="width:100%"></i></div></div><div class="p">100 %</div></div>
-          <div class="fort"><div><div class="t">02 Die Preistreppe</div><div class="bar"><i style="width:100%"></i></div></div><div class="p">100 %</div></div>
-          <div class="fort"><div><div class="t">03 Bonner Formel, Simulation</div><div class="bar"><i style="width:45%"></i></div></div><div class="p">45 %</div></div>
-          <div class="fort"><div><div class="t">04 Wissensabfrage</div><div class="bar"><i style="width:0%"></i></div></div><div class="p">0 %</div></div>
-        </div>
+        <div class="baseline-error" id="baseline-error" role="alert"></div>
+        <div class="baseline-status" id="baseline-status" aria-live="polite">Fixiert: 10,00 Mio. € Netto-Selbstkosten · Q = 1,05 · 50 % Eigenleistung · BNAV 5,00 Mio. € · UV 5,00 Mio. € · erhaltene Anzahlungen 20 % = 2,00 Mio. €</div>
       </div>
-
-      <p class="attn">
-        Statischer Screen. Keine Benutzerverwaltung, keine Datenhaltung, keine Fortschrittsspeicherung.
-      </p>
+      <div class="sim"><div class="card sim-controls">
+        <div class="panel-title">Vergleichsszenario verändern</div>
+        <div class="field"><div class="top"><label for="in-make">Make/Buy-Verteilung<span class="hint">Eigenleistung E; Fremdleistung F ist der Rest</span></label><output id="out-make"></output></div><input type="range" id="in-make" min="0" max="1" step="0.01" value="0.50"></div>
+        <div class="preset-row" aria-label="Voreinstellungen Make/Buy"><button type="button" data-make="0.40">40 / 60</button><button type="button" data-make="0.50">50 / 50</button><button type="button" data-make="0.60">60 / 40</button></div>
+        <div class="derived"><span>Eigenleistung E</span><strong id="out-E"></strong></div><div class="derived"><span>Fremdleistung F</span><strong id="out-F"></strong></div>
+        <div class="field" style="margin-top:18px"><div class="top"><label for="in-invest">Zusätzliche Investition in Gebäude<span class="hint">Anteil an den fixierten Netto-Selbstkosten; erhöht im Lernmodell das BNAV</span></label><output id="out-invest"></output></div><input type="range" id="in-invest" min="0" max="100" step="1" value="0"><div class="range-scale"><span>0 % · 0 €</span><span>100 % · Netto-Selbstkosten</span></div></div>
+        <div class="percent-preset-row" aria-label="Voreinstellungen Gebäudeinvestition"><button type="button" data-invest-rate="0">0 %</button><button type="button" data-invest-rate="10">10 %</button><button type="button" data-invest-rate="20">20 %</button><button type="button" data-invest-rate="50">50 %</button><button type="button" data-invest-rate="100">100 %</button></div>
+        <div class="field"><div class="top"><label for="in-advance">Erhaltene Anzahlungen<span class="hint">Anteil an den fixierten Netto-Selbstkosten; 0 % bedeutet keine Anzahlungen</span></label><output id="out-advance"></output></div><input type="range" id="in-advance" min="0" max="100" step="1" value="20"><div class="range-scale"><span>0 % · keine</span><span>100 % · Netto-Selbstkosten</span></div></div>
+        <div class="percent-preset-row" aria-label="Voreinstellungen erhaltene Anzahlungen"><button type="button" data-advance-rate="0">0 %</button><button type="button" data-advance-rate="10">10 %</button><button type="button" data-advance-rate="20">20 %</button><button type="button" data-advance-rate="50">50 %</button><button type="button" data-advance-rate="100">100 %</button></div>
+        <div class="derived"><span>Anlagenintensität</span><strong id="out-intensity"></strong></div><div class="derived"><span>Abzugskapital</span><strong id="out-deduction"></strong></div>
+        <button class="btn" id="load-example" type="button" style="width:100%;margin-top:18px">Beispielszenario laden</button>
+        <button class="btn secondary" id="reset-sim" type="button" style="width:100%;margin-top:8px">Auf Ausgangswerte setzen</button>
+      </div><div>
+        <div class="results">
+          <article class="scenario fixed"><div class="caption">▣ Ausgangsszenario · fixiert</div><div class="value" id="base-total"></div><div class="result-label" id="base-rate"></div><div class="scenario-rates"><div class="scenario-rate"><span>Bonner</span><b id="base-bonner-rate"></b></div><div class="scenario-rate"><span>KAZI</span><b id="base-kazi-rate"></b></div><div class="scenario-rate total"><span>Gesamt</span><b id="base-total-rate"></b></div></div><dl><dt>Netto-Selbstkosten</dt><dd id="base-net-cost"></dd><dt>Bonner-Formel-Gewinn</dt><dd id="base-bonner"></dd><dt>KAZI-Zinsbetrag</dt><dd id="base-kazi"></dd><dt>Make / Buy</dt><dd id="base-make"></dd><dt>Anlagenintensität</dt><dd id="base-intensity"></dd><dt>Abzugskapital</dt><dd id="base-deduction"></dd></dl></article>
+          <article class="scenario changed"><div class="caption">◆ Vergleichsszenario · veränderbar</div><div class="value" id="scenario-total"></div><div class="result-label" id="scenario-rate"></div><div class="scenario-rates"><div class="scenario-rate"><span>Bonner</span><b id="scenario-bonner-rate"></b></div><div class="scenario-rate"><span>KAZI</span><b id="scenario-kazi-rate"></b></div><div class="scenario-rate total"><span>Gesamt</span><b id="scenario-total-rate"></b></div></div><dl><dt>Netto-Selbstkosten</dt><dd id="scenario-net-cost"></dd><dt>Bonner-Formel-Gewinn</dt><dd id="scenario-bonner"></dd><dt>KAZI-Zinsbetrag</dt><dd id="scenario-kazi"></dd><dt>Make / Buy</dt><dd id="scenario-make"></dd><dt>Anlagenintensität</dt><dd id="scenario-intensity"></dd><dt>Abzugskapital</dt><dd id="scenario-deduction"></dd></dl></article>
+        </div>
+        <div class="delta" aria-live="polite"><div class="delta-item"><div class="k">Gesamtdifferenz</div><div class="v" id="delta-total"></div><div class="sub" id="delta-total-rate"></div></div><div class="delta-item"><div class="k">Differenz Bonner Formel</div><div class="v" id="delta-bonner"></div><div class="sub" id="delta-bonner-rate"></div></div><div class="delta-item"><div class="k">Differenz KAZI</div><div class="v" id="delta-kazi"></div><div class="sub" id="delta-kazi-rate"></div></div></div>
+        <section class="fixed-curves" aria-labelledby="fixed-curves-title">
+          <div class="panel-title" id="fixed-curves-title" style="border:0;padding:0;margin-bottom:8px">Aktuelle Position auf den festen Kennlinien</div>
+          <p class="chart-note">Die Kennlinien selbst bleiben unverändert. Nur der farbige Punkt bewegt sich, wenn du die Stellhebel des Vergleichsszenarios veränderst.</p>
+          <div class="fixed-curve-grid">
+            <figure class="fixed-curve-panel">
+              <figcaption><strong>Bonner-Formel-Gewinn</strong><span>Q, Anlagenintensität und Make/Buy werden im Bonner-Faktor zusammengeführt.</span></figcaption>
+              <svg class="fixed-curve-plot" viewBox="0 0 420 285" role="img" aria-labelledby="bonner-chart-title bonner-chart-desc">
+                <title id="bonner-chart-title">Feste Kennlinie des Bonner-Formel-Gewinns</title><desc id="bonner-chart-desc">Der bewegliche Punkt zeigt den Bonner-Faktor und den daraus berechneten Gewinnanteil des aktuellen Vergleichsszenarios.</desc>
+                <rect class="plot-frame" x="56" y="20" width="341" height="198"></rect>
+                <g aria-hidden="true"><line class="grid-line" x1="56" y1="218" x2="397" y2="218"></line><line class="grid-line" x1="56" y1="157.1" x2="397" y2="157.1"></line><line class="grid-line" x1="56" y1="96.2" x2="397" y2="96.2"></line><line class="grid-line" x1="56" y1="35.2" x2="397" y2="35.2"></line><text class="axis-text" x="48" y="222" text-anchor="end">0 %</text><text class="axis-text" x="48" y="161.1" text-anchor="end">4 %</text><text class="axis-text" x="48" y="100.2" text-anchor="end">8 %</text><text class="axis-text" x="48" y="39.2" text-anchor="end">12 %</text><text class="axis-text" x="56" y="237" text-anchor="start">0</text><text class="axis-text" x="174" y="237" text-anchor="middle">0,9</text><text class="axis-text" x="279" y="237" text-anchor="middle">1,7</text><text class="axis-text" x="397" y="237" text-anchor="end">2,6</text></g>
+                <line class="axis-line" x1="56" y1="218" x2="397" y2="218"></line><line class="axis-line" x1="56" y1="20" x2="56" y2="218"></line><path class="fixed-curve bonner" d="M56 218 L397 20"></path>
+                <circle class="moving-dot bonner" id="bonner-current-dot" r="7"></circle><text class="point-label bonner" id="bonner-point-label"></text>
+                <text class="axis-title" data-axis="x" x="226" y="277" text-anchor="middle">Gewichteter Bonner-Faktor</text><text class="axis-title" data-axis="y" x="14" y="119" text-anchor="middle" transform="rotate(-90 14 119)">Gewinnanteil in %</text>
+              </svg>
+              <div class="curve-current" id="bonner-chart-current" aria-live="polite"></div>
+            </figure>
+            <figure class="fixed-curve-panel">
+              <figcaption><strong>KAZI-Zinsbetrag</strong><span>Die Kapitalbasis wird als Anteil der Verrechnungsbasis SK III dargestellt.</span></figcaption>
+              <svg class="fixed-curve-plot" viewBox="0 0 420 285" role="img" aria-labelledby="kazi-chart-title kazi-chart-desc">
+                <title id="kazi-chart-title">Feste Kennlinie des KAZI-Anteils</title><desc id="kazi-chart-desc">Der bewegliche Punkt zeigt das Verhältnis der anrechenbaren Kapitalbasis zu SK III und den KAZI-Anteil des aktuellen Vergleichsszenarios.</desc>
+                <rect class="plot-frame" x="56" y="20" width="341" height="198"></rect>
+                <g aria-hidden="true"><line class="grid-line" x1="56" y1="218" x2="397" y2="218"></line><line class="grid-line" x1="56" y1="152" x2="397" y2="152"></line><line class="grid-line" x1="56" y1="86" x2="397" y2="86"></line><line class="grid-line" x1="56" y1="20" x2="397" y2="20"></line><text class="axis-text" x="48" y="222" text-anchor="end">0 %</text><text class="axis-text" x="48" y="156" text-anchor="end">2 %</text><text class="axis-text" x="48" y="90" text-anchor="end">4 %</text><text class="axis-text" x="48" y="24" text-anchor="end">6 %</text><text class="axis-text" x="56" y="237" text-anchor="start">0 %</text><text class="axis-text" x="169" y="237" text-anchor="middle">33 %</text><text class="axis-text" x="284" y="237" text-anchor="middle">67 %</text><text class="axis-text" x="397" y="237" text-anchor="end">100 %</text></g>
+                <line class="axis-line" x1="56" y1="218" x2="397" y2="218"></line><line class="axis-line" x1="56" y1="20" x2="56" y2="218"></line><path class="fixed-curve kazi" d="M56 218 L397 20"></path>
+                <circle class="moving-dot kazi" id="kazi-current-dot" r="7"></circle><text class="point-label kazi" id="kazi-point-label"></text>
+                <text class="axis-title" data-axis="x" x="226" y="277" text-anchor="middle">Kapitalbasis / SK III</text><text class="axis-title" data-axis="y" x="14" y="119" text-anchor="middle" transform="rotate(-90 14 119)">KAZI-Anteil in %</text>
+              </svg>
+              <div class="curve-current" id="kazi-chart-current" aria-live="polite"></div>
+            </figure>
+          </div>
+        </section>
+        <div class="panel-title" style="margin-top:17px">Rechenweg des Vergleichsszenarios</div><div class="calculation" id="calculation"></div>
+        <div class="explanation"><h4>Was verursacht die Veränderung?</h4><p id="effect-text"></p></div>
+        <details class="card limits"><summary>Annahmen und Grenzen des Lernmodells</summary><ul><li>Alle Werte sind synthetische Beispiele.</li><li>Das Ausgangsszenario nimmt 50 Prozent Eigenleistung an. BNAV und UV entsprechen jeweils 50 Prozent der Netto-Selbstkosten; erhaltene Anzahlungen werden mit 20 Prozent angesetzt. Dadurch bleibt das Modell auch bei sehr großen Eingaben vergleichbar.</li><li>Die zusätzliche Gebäudeinvestition wird als Anteil von 0 bis 100 Prozent der Netto-Selbstkosten eingegeben und erhöht vereinfachend nur das BNAV; Finanzierung, Abschreibung, Zeitbezug und weitere Kostenfolgen bleiben unberücksichtigt.</li><li>Erhaltene Anzahlungen werden als Anteil von 0 bis 100 Prozent der Netto-Selbstkosten eingestellt und vereinfachend vollständig als Abzugskapital behandelt. Die fachliche Anerkennung kann im Einzelfall abweichen.</li><li>Der KAZI-Ausgangssatz beträgt in diesem Lernmodell 6 Prozent. Für die Simulation wird die anrechenbare Kapitalbasis auf die Verrechnungsbasis SK III begrenzt; der ausgewiesene KAZI-Anteil kann daher 6 Prozent nicht überschreiten.</li><li>Die Ergebnisse sind keine Empfehlung für reale Angebots-, Make-or-buy- oder Investitionsentscheidungen. Die Begrenzung und der konkrete Satz sind vor betrieblicher Nutzung fachlich zu bestätigen.</li></ul></details>
+      </div></div>
     </section>
 
+    <section class="screen" id="s-quiz" hidden>
+      <div class="eyebrow">08 / Abschluss und Transfer · ca. 3 Min.</div><h2>Das Wichtigste in den Arbeitsalltag übertragen</h2><p class="lede">Der Grundlagenpfad schafft Orientierung. Bei realen Kalkulationen und Entscheidungen bleibt die frühzeitige Einbindung der fachlich verantwortlichen Stelle erforderlich.</p>
+      <div class="grid3"><article class="card"><div class="panel-title">Erkennen</div><h3>Preisart klären</h3><p>Prüfe zuerst, welcher Preisbildungsweg für den konkreten Auftrag in Betracht kommt.</p></article><article class="card"><div class="panel-title">Verstehen</div><h3>Wirkungen einordnen</h3><p>Betrachte Kosten-, Vermögens- und Leistungsstruktur nicht isoliert, sondern im jeweiligen Vertragskontext.</p></article><article class="card"><div class="panel-title">Handeln</div><h3>Expertise einbeziehen</h3><p>Nutze Lernmodell und One-Pager als Orientierung und kläre den Einzelfall fachlich.</p></article></div>
+      <div class="callout"><h4>Nach dem Abschluss</h4><p>Sobald auch die Abschlussfrage richtig beantwortet wurde, sind alle acht Einheiten abgeschlossen. Der One-Pager bleibt jederzeit über die Navigation erreichbar.</p></div>
+      <div class="completion" id="course-completion" aria-live="polite"><h3>Grundlagenpfad vollständig abgeschlossen</h3><p>Alle acht Einheitsfragen wurden richtig beantwortet.</p><div class="quick-actions" style="margin:12px 0 0"><button class="btn secondary" type="button" data-target="s-reference">One-Pager öffnen</button><button class="btn tertiary" type="button" data-target="s-support">Fachliche Unterstützung</button></div></div>
+    </section>
+
+    <section class="screen" id="s-reference" hidden>
+      <div class="eyebrow">Nachschlagen / One-Pager</div><h2>Preisrecht auf einen Blick</h2><p class="lede">Kompakte Orientierung für bereits behandelte Inhalte. Die Übersicht ersetzt keine fachliche Prüfung des konkreten Sachverhalts.</p>
+      <div class="quick-actions no-print"><button class="btn" id="print-reference" type="button">One-Pager drucken</button><button class="btn secondary" type="button" data-target="s-support">Fachliche Unterstützung</button></div>
+      <table class="reference-table"><thead><tr><th>Thema</th><th>Kernaussage</th></tr></thead><tbody><tr><td>Marktpreisvorrang</td><td>Marktpreisen nach § 4 PreisV 30/53 ist grundsätzlich der Vorzug vor Selbstkostenpreisen zu geben.</td></tr><tr><td>§ 5</td><td>Selbstkostenpreise dürfen nur ausnahmsweise unter den dort genannten Voraussetzungen vereinbart werden.</td></tr><tr><td>§ 6</td><td>Regelt Selbstkostenfestpreis und Selbstkostenrichtpreis; der Festpreis ist möglichst vorzuziehen.</td></tr><tr><td>§ 7</td><td>Der Selbstkostenerstattungspreis kommt nur in Betracht, wenn eine andere Preisermittlung nicht möglich ist.</td></tr><tr><td>Gesamtlogik</td><td>Im vereinfachten Lernmodell: Selbstkostenpreis = anrechenbare Kosten + KAZI-Zinsbetrag + Gewinn nach Bonner Formel. Kalkulatorischer Ergebnisbeitrag = Bonner-Formel-Gewinn + KAZI-Zinsbetrag.</td></tr><tr><td>Bonner Formel</td><td>G = 0,05 × (Q + 1,5 × BNAV/(BNAV + UV)) × E + 0,01 × F</td></tr><tr><td>KAZI</td><td>KAZI = 6 % × (BNAV + UV − Abzugskapital) / Verrechnungsbasis SK III. Der Zuschlagssatz ergibt auf die Basis angewendet den vom Kunden vergüteten kalkulatorischen Zinsbetrag.</td></tr><tr><td>Anlagenintensität</td><td>BNAV/BNV. Bei sonst gleichen Eingangsgrößen erhöht ein höheres Verhältnis den Gewinnanteil nach Bonner Formel.</td></tr><tr><td>Make-or-buy</td><td>E und F werden unterschiedlich gewichtet. Preisrechtliche Effekte sind gemeinsam mit allen übrigen Entscheidungskriterien zu prüfen.</td></tr><tr><td>Modellgrenze</td><td>Die Simulation verwendet synthetische Daten, vereinfacht die Realität und gibt keine Handlungsempfehlung.</td></tr></tbody></table>
+      <div class="callout warn"><h4>Wann fachliche Unterstützung einbeziehen?</h4><p>Insbesondere bei der Wahl der Preisart, realen Kalkulationen, Investitions- und Make-or-buy-Entscheidungen sowie Fragen zur Anerkennung von Kosten und Vermögen.</p></div><p class="source">Quellenbasis des Lernprototyps: PreisV 30/53, LSP Nr. 43–46 und 51–52, Verordnung PR Nr. 4/72 sowie die in der Bachelorarbeit dokumentierte Fachliteratur. Fachliche Freigabe vor betrieblicher Nutzung erforderlich.</p>
+    </section>
+
+    <section class="screen" id="s-support" hidden>
+      <div class="eyebrow">Persönliche Lernunterstützung</div><h2>Fachliche Unterstützung einbeziehen</h2><p class="lede">Der digitale Lernpfad ergänzt die persönliche Einordnung. Komplexe oder fallspezifische Fragen sollen weiterhin mit einer fachkundigen Stelle geklärt werden.</p>
+      <div class="support-list"><div class="support-item"><div class="symbol">?</div><div><h3>Preisrechts-Team</h3><p>Platzhalter für einen freigegebenen internen Kontaktweg. Im Prototyp wird keine Nachricht versendet.</p></div></div><div class="support-item"><div class="symbol">Q</div><div><h3>Digitale Fragerunde</h3><p>Konzeptionell vorgesehener regelmäßiger Termin zur Einordnung allgemeiner Fragen und wiederkehrender Anwendungsfälle.</p></div></div><div class="support-item"><div class="symbol">S</div><div><h3>Showroom und Vertiefung</h3><p>Der bestehende Showroom oder ein mobiles Format kann für Diskussionen, standortspezifische Beispiele und vertiefte Schulungen genutzt werden.</p></div></div></div>
+      <div class="callout warn"><h4>Im Prototyp nicht implementiert</h4><p>Kontaktformular, Terminbuchung, Webinarplattform und tatsächliche Ansprechpartner sind Bestandteile des Betriebskonzepts und bedürfen einer internen Freigabe.</p></div>
+    </section>
+
+    <section class="screen" id="s-operations" hidden>
+      <div class="eyebrow">Konzeptansicht / nicht implementiert</div><h2>Rollen, Freigabe und Betrieb</h2><p class="lede">Diese Ansicht dokumentiert organisatorische Anforderungen. Sie stellt keine real implementierte Benutzer-, Daten- oder Rechteverwaltung dar.</p>
+      <div class="meta-grid"><div class="meta-box"><div class="k">Versionsstand</div><div class="v">Evaluationsprototyp 1.0</div></div><div class="meta-box"><div class="k">Daten</div><div class="v">ausschließlich synthetisch</div></div><div class="meta-box"><div class="k">Fachliche Freigabe</div><div class="v">vor Nutzung erforderlich</div></div><div class="meta-box"><div class="k">Bereitstellung</div><div class="v">intern vorgesehen</div></div></div>
+      <table class="role-table"><thead><tr><th>Rolle</th><th>Aufgabe im Zielkonzept</th><th>Status im Prototyp</th></tr></thead><tbody><tr><td>Lernende</td><td>Lernmodule, Nachschlagebereich und Simulation nutzen; fachliche Unterstützung aufrufen.</td><td><span class="tag ok">teilweise demonstriert</span></td></tr><tr><td>Content Owner</td><td>Inhalte und Simulationslogik fachlich prüfen, versionieren, freigeben und aktualisieren.</td><td><span class="tag concept">konzeptionell</span></td></tr><tr><td>Technische Administration</td><td>Interne Bereitstellung, Authentifizierung, Berechtigungen und technischen Betrieb verantworten.</td><td><span class="tag concept">konzeptionell</span></td></tr></tbody></table>
+      <div class="callout"><h4>Vorgesehener Pflegeprozess</h4><p>Änderungen am Preisrecht, an internen Prozessen oder an der verwendeten Berechnungslogik lösen eine fachliche Prüfung aus. Erst nach dokumentierter Freigabe werden Inhalte im Zielsystem veröffentlicht.</p></div><div class="callout warn"><h4>Klare Abgrenzung</h4><p>Interne Authentifizierung, Lernfortschrittsspeicherung, Systemintegration, Datenschutzprüfung und produktive Datenverarbeitung sind nicht Bestandteil dieses Prototyps.</p></div>
+    </section>
   </main>
 </div>
 
 <script>
 "use strict";
+const LEARNING=[
+  {id:"s-bedeutung",z:"01",title:"Bedeutung",heading:"Bedeutung und Anwendungsbereich",desc:"Ursprung, Zweck und Anreizwirkungen des Preisrechts.",time:"2 Min."},
+  {id:"s-treppe",z:"02",title:"Preistreppe",heading:"Preisarten und Preistreppe",desc:"Rangfolge und Regelungsbereiche der §§ 3 bis 8.",time:"4 Min."},
+  {id:"s-logik",z:"03",title:"Zwei Preislogiken",heading:"Marktlogik und Preisrechtslogik",desc:"Unterschiede der Preisbildung auf einen Blick.",time:"3 Min."},
+  {id:"s-formel",z:"04",title:"Bonner Formel",heading:"Bonner Formel und Anlagenintensität",desc:"Größen, Qualifikationsfaktoren und Wirkungslogik.",time:"4 Min."},
+  {id:"s-decisions",z:"05",title:"Entscheidungen",heading:"Investitionen und Make-or-buy",desc:"Preisrechtliche Effekte in Entscheidungssituationen erkennen.",time:"3 Min."},
+  {id:"s-kzi",z:"06",title:"KAZI",heading:"Kalkulatorische Zinsen",desc:"Kapitalbasis, Zuschlagssatz und Zinsbetrag verstehen.",time:"4 Min."},
+  {id:"s-sim",z:"07",title:"Simulation",heading:"Interaktiver Szenariovergleich",desc:"Make/Buy, Investition und Anzahlungen im Vergleich untersuchen.",time:"8 Min.",core:true},
+  {id:"s-quiz",z:"08",title:"Abschluss",heading:"Abschluss und Transfer",desc:"Kernaussagen sichern und den nächsten Schritt wählen.",time:"3 Min."}
+];
+const TOOLS=[{id:"s-reference",z:"↗",title:"One-Pager"},{id:"s-support",z:"?",title:"Fachliche Unterstützung"},{id:"s-operations",z:"—",title:"Betriebskonzept"}];
+const completed=new Set();
+function makeNavItem(item,learning=false){const li=document.createElement("li"),b=document.createElement("button");b.type="button";b.dataset.target=item.id;b.innerHTML='<span class="z">'+item.z+'</span><span>'+item.title+'</span><span class="done" aria-hidden="true">✓</span>';if(learning)b.dataset.learning="true";li.appendChild(b);return li;}
+document.getElementById("nav-learning").appendChild(makeNavItem({id:"s-start",z:"00",title:"Übersicht"},false));LEARNING.forEach(x=>document.getElementById("nav-learning").appendChild(makeNavItem(x,true)));TOOLS.forEach(x=>document.getElementById("nav-tools").appendChild(makeNavItem(x,false)));
+const moduleList=document.getElementById("module-list");
+LEARNING.forEach(m=>{const b=document.createElement("button");b.type="button";b.className="module"+(m.core?" kern":"");b.dataset.target=m.id;b.dataset.module=m.id;b.innerHTML='<span class="z">'+m.z+'</span><span><h3>'+m.heading+'</h3><p>'+m.desc+'</p></span><span class="meta">'+m.time+'</span>';moduleList.appendChild(b);});
+document.querySelectorAll("[data-target]").forEach(b=>{if(!b.dataset.bound){b.addEventListener("click",()=>show(b.dataset.target));b.dataset.bound="true";}});
+function updateProgress(){
+  const n=completed.size;
+  document.getElementById("progress-bar").style.width=(n/LEARNING.length*100)+"%";
+  document.getElementById("progress-text").textContent=n+" von "+LEARNING.length+" abgeschlossen";
+  document.querySelectorAll("[data-learning=true]").forEach(b=>b.classList.toggle("completed",completed.has(b.dataset.target)));
+  document.querySelectorAll("[data-module]").forEach(b=>{const done=completed.has(b.dataset.module),item=LEARNING.find(x=>x.id===b.dataset.module);b.classList.toggle("completed",done);b.querySelector(".meta").textContent=done?"✓ abgeschlossen":item.time;});
+  const courseCompletion=document.getElementById("course-completion");
+  if(courseCompletion)courseCompletion.classList.toggle("on",n===LEARNING.length);
+}
+function show(id){document.querySelectorAll(".screen").forEach(s=>{const active=s.id===id;s.hidden=!active;s.classList.toggle("on",active);});document.querySelectorAll(".nav button").forEach(b=>{if(b.dataset.target===id)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current");});updateProgress();window.scrollTo({top:0,behavior:"auto"});const heading=document.querySelector("#"+id+" h2");if(heading){heading.setAttribute("tabindex","-1");heading.focus({preventScroll:true});}}
 
-/* ============================================================================
-   PARAMS  —  einzige Stelle zum Anpassen der Formelgrößen.
-   Bezeichnung, Einheit und Wertebereiche aus der Primärquelle eintragen:
-   Erlass BMVg vom 27.06.1989, bzw. Ebisch/Gottschalk Rdn. 8 zu Nr. 52 LSP.
-   Formel:  G = 0,05 · (Q + 1,5 · BNAV/BNV) · E + 0,01 · F
-   ========================================================================= */
-const PARAMS = {
-  Q:    { label:"Q",    hint:"Bezeichnung aus Primärquelle ergänzen", einheit:"",  min:0,       max:1,          step:0.01,   wert:0.50 },
-  E:    { label:"E",    hint:"Bezeichnung aus Primärquelle ergänzen", einheit:"€", min:0,       max:10000000,   step:100000, wert:5000000 },
-  F:    { label:"F",    hint:"Bezeichnung aus Primärquelle ergänzen", einheit:"€", min:0,       max:10000000,   step:100000, wert:4000000 },
-  BNAV: { label:"Betriebsnotwendiges Anlagevermögen",  hint:"", einheit:"€", min:0, max:10000000, step:100000, wert:5000000 },
-  BNUV: { label:"Betriebsnotwendiges Umlaufvermögen",  hint:"", einheit:"€", min:0, max:10000000, step:100000, wert:5000000 },
-  SK:   { label:"Selbstkosten des Auftrags", hint:"Nur Bezugsgröße für die Prozentangabe, nicht Teil der Formel",
-          einheit:"€", min:1000000, max:20000000, step:250000, wert:5000000 }
+const CHECKS={
+  "s-bedeutung":{q:"Warum kann eine Investition im Preisrecht den kalkulatorischen Gewinn oder die kalkulatorischen Zinsen erhöhen?",a:["Weil der Staat jede mit Steuergeld verbundene Investition automatisch mit zusätzlichem Gewinn belohnt.","Weil anerkanntes betriebsnotwendiges Anlagevermögen die Kapitalbasis und die Anlagenintensität beeinflussen kann.","Weil jede Investition den Marktpreis gesetzlich erhöht."],correct:1,why:"Entscheidend ist die preisrechtliche Anerkennung als betriebsnotwendig. Die Wirkung ergibt sich aus der Berechnungssystematik und ist keine pauschale staatliche Investitionsprämie."},
+  "s-treppe":{q:"Welche Zuordnung in der Preistreppe ist richtig?",a:["§ 6 regelt Selbstkostenfestpreis und Selbstkostenrichtpreis.","§ 5 regelt ausschließlich den Selbstkostenfestpreis.","§ 7 gibt dem Erstattungspreis Vorrang vor dem Festpreis."],correct:0,why:"§ 6 erfasst Fest- und Richtpreis. Der Erstattungspreis nach § 7 kommt nur nachrangig in Betracht."},
+  "s-logik":{q:"Welche Aussage beschreibt den Selbstkostenpreis im Vergleich zum Marktpreis am besten?",a:["Er entsteht immer frei durch Angebot und Nachfrage.","Er baut vereinfacht auf anrechenbaren Kosten, dem KAZI-Zinsbetrag und dem Gewinn nach Bonner Formel auf und ist gegenüber dem Marktpreis nachrangig.","Er enthält grundsätzlich keine Gemeinkosten."],correct:1,why:"Selbstkostenpreise sind die Ausnahme. Ihre Kosten- und Ergebnisbestandteile müssen den anwendbaren preisrechtlichen Vorgaben entsprechen."},
+  "s-formel":{q:"Wie unterscheidet die Bonner Formel zwischen Make und Buy?",a:["Eigenleistung E wird im 5-Prozent-Term mit Q und Anlagenintensität berücksichtigt; F geht mit 1 Prozent ein.","Eigenleistung E und Fremdleistung F werden immer identisch gewichtet.","Nur Fertigungsmaterial und Fremdleistungen F beeinflussen den Gewinn."],correct:0,why:"Die Formel gewichtet den Make-Anteil E über den 0,05-Term sowie Q und Anlagenintensität. Der Buy-Anteil F geht separat mit 0,01 ein."},
+  "s-decisions":{q:"Wie soll ein sichtbarer preisrechtlicher Effekt bei einer Investitions- oder Make-or-buy-Frage behandelt werden?",a:["Er entscheidet die Frage allein.","Er ist ein Kriterium unter mehreren und muss im Einzelfall fachlich eingeordnet werden.","Er darf grundsätzlich ignoriert werden."],correct:1,why:"Kosten, Risiken, Qualität, Kapazitäten und Vertragsbedingungen bleiben neben dem preisrechtlichen Effekt relevant."},
+  "s-kzi":{q:"Warum wird das betriebsnotwendige Kapital in der KAZI-Formel durch die Verrechnungsbasis SK III geteilt?",a:["Damit aus dem Zinsbetrag ein auf SK III anwendbarer Zuschlagssatz entsteht.","Damit der kalkulatorische Gewinn der Bonner Formel berechnet wird.","Damit das Abzugskapital vollständig entfällt."],correct:0,why:"Die Division verteilt die kalkulatorischen Zinsen auf die Verrechnungsbasis SK III. So entsteht der prozentuale KAZI-Zuschlagssatz."},
+  "s-sim":{q:"Warum lassen sich Ausgangs- und Vergleichsszenario in der Simulation sinnvoll gegenüberstellen?",a:["Weil das fixierte Ausgangsszenario als unveränderte Referenz dient und die Wirkung der gewählten Stellhebel im Vergleich sichtbar wird.","Weil alle Eingangsgrößen gleichzeitig zufällig verändert werden.","Weil das Ergebnis eine reale Investitionsentscheidung verbindlich vorgibt."],correct:0,why:"Die feste Referenz macht Unterschiede bei Bonner-Formel-Gewinn und KAZI sichtbar. Das Ergebnis bleibt ein vereinfachtes Lernmodell und keine Entscheidungsempfehlung."},
+  "s-quiz":{q:"Wie nutzt du die Inhalte nach Abschluss des Lernpfads richtig?",a:["Als vollständigen Ersatz für eine fachliche Einzelfallprüfung","Als Orientierung; bei realen Fällen beziehe ich die fachlich verantwortliche Stelle ein","Als verbindliche Freigabe für Angebots- und Investitionsentscheidungen"],correct:1,why:"Lernpfad, Simulation und One-Pager unterstützen das Verständnis, ersetzen aber keine fachliche Prüfung."}
 };
-
-/* Szenarien: identische Kostenbasis, ausschließlich die Vermögensstruktur unterscheidet sich. */
-const SZENARIEN = {
-  anlage:   { BNAV:8000000, BNUV:2000000, Q:0.50, E:5000000, F:4000000, SK:5000000 },
-  personal: { BNAV:2000000, BNUV:8000000, Q:0.50, E:5000000, F:4000000, SK:5000000 }
-};
-
-/* ---------- Formatierung ---------- */
-const eur  = n => n.toLocaleString("de-DE",{maximumFractionDigits:0}) + " €";
-const dez  = (n,k=2) => n.toLocaleString("de-DE",{minimumFractionDigits:k,maximumFractionDigits:k});
-const proz = n => dez(n,2) + " %";
-
-/* ---------- Kernberechnung ---------- */
-function berechne(w){
-  const bnv   = w.BNAV + w.BNUV;
-  const quote = bnv > 0 ? w.BNAV / bnv : 0;
-  const g     = 0.05 * (w.Q + 1.5 * quote) * w.E + 0.01 * w.F;
-  return { bnv, quote, g, pct: w.SK > 0 ? g / w.SK * 100 : 0 };
+function buildLessonCheck(item){
+  const q=CHECKS[item.id],section=document.createElement("section"),head=document.createElement("div"),title=document.createElement("h3"),state=document.createElement("span"),question=document.createElement("p"),feedback=document.createElement("div"),buttons=[];
+  section.className="lesson-check";section.id="check-"+item.id;
+  head.className="check-head";title.textContent="Wissenscheck zu Einheit "+item.z;state.className="check-state";state.textContent="Noch offen";head.append(title,state);
+  question.className="check-question";question.textContent=q.q;section.append(head,question);
+  q.a.forEach((label,index)=>{const b=document.createElement("button");b.type="button";b.className="option";b.innerHTML='<span class="m">'+String.fromCharCode(65+index)+'</span><span>'+label+'</span>';b.addEventListener("click",()=>{
+    if(completed.has(item.id))return;
+    if(index===q.correct){b.classList.add("correct");buttons.forEach(x=>x.disabled=true);completed.add(item.id);section.classList.add("completed");state.textContent="✓ abgeschlossen";feedback.textContent="Richtig. "+q.why;feedback.classList.add("on");updateProgress();}
+    else{b.classList.add("wrong");b.disabled=true;feedback.textContent="Noch nicht. "+q.why+" Versuche es erneut.";feedback.classList.add("on");}
+  });buttons.push(b);section.appendChild(b);});
+  feedback.className="check-feedback";feedback.setAttribute("aria-live","polite");section.appendChild(feedback);return section;
 }
+LEARNING.forEach((item,index)=>{const screen=document.getElementById(item.id),check=buildLessonCheck(item),completion=screen.querySelector("#course-completion"),nav=document.createElement("div"),prev=document.createElement("button"),next=document.createElement("button");if(completion)screen.insertBefore(check,completion);else screen.appendChild(check);nav.className="flow-nav";prev.type="button";prev.className="btn secondary";prev.textContent=index===0?"Zur Übersicht":"← Zurück";prev.addEventListener("click",()=>show(index===0?"s-start":LEARNING[index-1].id));next.type="button";next.className="btn";next.textContent=index===LEARNING.length-1?"One-Pager öffnen":"Weiter →";next.addEventListener("click",()=>show(index===LEARNING.length-1?"s-reference":LEARNING[index+1].id));nav.append(prev,next);screen.appendChild(nav);});
 
-/* ---------- Eingabefelder aufbauen ---------- */
-const state = {};
-Object.keys(PARAMS).forEach(k => state[k] = PARAMS[k].wert);
+function initLogicGraphic(){const detail=document.getElementById("logic-detail"),hotspots=document.querySelectorAll(".logic-hotspot");if(!detail)return;const activate=hotspot=>{hotspots.forEach(x=>x.classList.toggle("active",x===hotspot));detail.querySelector(".kind").textContent=hotspot.dataset.kind;detail.querySelector("h4").textContent=hotspot.dataset.title;detail.querySelector("p").textContent=hotspot.dataset.detail;};hotspots.forEach(h=>{h.addEventListener("mouseenter",()=>activate(h));h.addEventListener("focus",()=>activate(h));h.addEventListener("click",()=>activate(h));});}
+function initPriceOrderGraphic(){const detail=document.getElementById("price-order-detail"),hotspots=document.querySelectorAll(".step-hotspot");if(!detail)return;const activate=hotspot=>{hotspots.forEach(x=>x.classList.toggle("active",x===hotspot));detail.querySelector(".kind").textContent=hotspot.dataset.kind;detail.querySelector("h4").textContent=hotspot.dataset.title;detail.querySelector("p").textContent=hotspot.dataset.detail;};hotspots.forEach(h=>{h.addEventListener("mouseenter",()=>activate(h));h.addEventListener("focus",()=>activate(h));h.addEventListener("click",()=>activate(h));});}
+function initFormulaGraphic(formulaSelector,detailId){const formula=document.querySelector(formulaSelector),detail=document.getElementById(detailId);if(!formula||!detail)return;const parts=formula.querySelectorAll(".formula-part"),activate=part=>{parts.forEach(x=>x.classList.toggle("active",x===part));detail.querySelector(".kind").textContent=part.dataset.kind;detail.querySelector("h4").textContent=part.dataset.title;detail.querySelector("p").textContent=part.dataset.detail;};parts.forEach(part=>{part.addEventListener("mouseenter",()=>activate(part));part.addEventListener("focus",()=>activate(part));part.addEventListener("click",()=>activate(part));});}
+function initOverallCalculation(){const detail=document.getElementById("calc-overview-detail"),parts=document.querySelectorAll(".calc-hotspot");if(!detail)return;const activate=part=>{parts.forEach(x=>x.classList.toggle("active",x===part));detail.querySelector(".kind").textContent=part.dataset.kind;detail.querySelector("h4").textContent=part.dataset.title;detail.querySelector("p").textContent=part.dataset.detail;};parts.forEach(part=>{part.addEventListener("mouseenter",()=>activate(part));part.addEventListener("focus",()=>activate(part));part.addEventListener("click",()=>activate(part));});}
 
-const felder = document.getElementById("felder");
-Object.entries(PARAMS).forEach(([k,p]) => {
-  const wrap = document.createElement("div");
-  wrap.className = "feld";
-  wrap.innerHTML =
-    '<div class="top">' +
-      '<label for="in-'+k+'">'+p.label+(p.hint?'<span class="hint">'+p.hint+'</span>':'')+'</label>' +
-      '<output id="out-'+k+'"></output>' +
-    '</div>' +
-    '<input type="range" id="in-'+k+'" min="'+p.min+'" max="'+p.max+'" step="'+p.step+'" value="'+p.wert+'">';
-  felder.appendChild(wrap);
-  wrap.querySelector("input").addEventListener("input", e => {
-    state[k] = parseFloat(e.target.value);
-    setzeSzenarioAktiv(null);
-    render();
-  });
-});
-
-/* ---------- Szenario-Umschaltung ---------- */
-const szBtns = document.querySelectorAll("[data-szenario]");
-function setzeSzenarioAktiv(name){
-  szBtns.forEach(b => b.classList.toggle("aktiv", b.dataset.szenario === name));
+/* Konsistentes, rein didaktisches Simulationsmodell. */
+const KAZI_MAX_RATE=.06,MIN_NET_COST=100000,MAX_NET_COST=100000000000;
+const BASE_RATIOS={make:.50,BNAV:.50,UV:.50,deduction:.20};
+const COMPARE_DEFAULTS={make:.50,investmentRate:0,advanceRate:20};
+const dec=(n,d=2)=>n.toLocaleString("de-DE",{minimumFractionDigits:d,maximumFractionDigits:d});
+const eur=n=>n.toLocaleString("de-DE",{maximumFractionDigits:0})+" €";
+const compactEur=n=>{const a=Math.abs(n);if(a>=1e9)return dec(n/1e9,2)+" Mrd. €";if(a>=1e6)return dec(n/1e6,2)+" Mio. €";if(a>=1e3)return dec(n/1e3,0)+" Tsd. €";return eur(n);};
+const pct=n=>dec(n,2)+" %",signedEur=n=>(n>0?"+":"")+eur(n),signedCompactEur=n=>(n>0?"+":"")+compactEur(n),signedPoints=n=>(n>0?"+":"")+dec(n,2)+" Prozentpunkte";
+function buildBase(N,Q){return{N,Q,make:BASE_RATIOS.make,BNAV:N*BASE_RATIOS.BNAV,UV:N*BASE_RATIOS.UV,deduction:N*BASE_RATIOS.deduction};}
+function calculateScenario(base,change){
+  const make=change.make,investmentRate=Math.max(0,Math.min(100,change.investmentRate)),advanceRate=Math.max(0,Math.min(100,change.advanceRate)),investment=base.N*investmentRate/100,E=base.N*make,F=base.N-E,BNAV=base.BNAV+investment,UV=base.UV,BNV=BNAV+UV,intensity=BNV?BNAV/BNV:0,deduction=base.N*advanceRate/100,BNK=Math.max(0,BNV-deduction),eligibleCapital=Math.min(base.N,BNK);
+  const bonner=.05*(base.Q+1.5*intensity)*E+.01*F,kazi=KAZI_MAX_RATE*eligibleCapital,total=bonner+kazi,bonnerRate=base.N?bonner/base.N*100:0,kaziRate=base.N?kazi/base.N*100:0,totalRate=bonnerRate+kaziRate;
+  return{N:base.N,make,E,F,BNAV,UV,BNV,intensity,deduction,BNK,eligibleCapital,capApplied:BNK>base.N,bonner,bonnerRate,kazi,kaziRate,total,totalRate,investment,investmentRate,advanceRate};
 }
-szBtns.forEach(b => b.addEventListener("click", () => {
-  const s = SZENARIEN[b.dataset.szenario];
-  Object.entries(s).forEach(([k,v]) => {
-    state[k] = v;
-    const el = document.getElementById("in-"+k);
-    if (el) el.value = v;
-  });
-  setzeSzenarioAktiv(b.dataset.szenario);
-  render();
-}));
-
-/* ---------- Kurve zeichnen ---------- */
-const NS = "http://www.w3.org/2000/svg";
-function zeichneKurve(aktuelleQuote){
-  const svg = document.getElementById("chart");
-  svg.textContent = "";
-  const L=58, R=634, T=18, B=232;
-
-  // Wertebereich: G in % der Selbstkosten über die volle Spanne der Anlagenintensität
-  const punkte = [];
-  for (let i=0;i<=100;i++){
-    const q = i/100;
-    const g = 0.05 * (state.Q + 1.5*q) * state.E + 0.01*state.F;
-    punkte.push({ q, p: state.SK>0 ? g/state.SK*100 : 0 });
-  }
-  const max = Math.max(...punkte.map(p=>p.p)) * 1.15 || 1;
-
-  const X = q => L + q*(R-L);
-  const Y = p => B - (p/max)*(B-T);
-
-  const add = (tag, attrs, text) => {
-    const el = document.createElementNS(NS, tag);
-    for (const a in attrs) el.setAttribute(a, attrs[a]);
-    if (text != null) el.textContent = text;
-    svg.appendChild(el);
-    return el;
-  };
-
-  // Gitter und Y-Achsenbeschriftung
-  for (let i=0;i<=4;i++){
-    const p = max*i/4, y = Y(p);
-    add("line",{x1:L,y1:y,x2:R,y2:y,stroke:"#E4E9F0","stroke-width":1});
-    add("text",{x:L-10,y:y+4,"text-anchor":"end","font-family":"IBM Plex Mono, monospace",
-                "font-size":11,fill:"#5C6B80"}, dez(p,1)+"%");
-  }
-  // X-Achse
-  add("line",{x1:L,y1:B,x2:R,y2:B,stroke:"#A9B5C6","stroke-width":1.5});
-  [0,0.25,0.5,0.75,1].forEach(q=>{
-    add("text",{x:X(q),y:B+20,"text-anchor":"middle","font-family":"IBM Plex Mono, monospace",
-                "font-size":11,fill:"#5C6B80"}, dez(q,2));
-  });
-  add("text",{x:(L+R)/2,y:B+44,"text-anchor":"middle","font-family":"Source Sans 3, sans-serif",
-              "font-size":12.5,fill:"#5C6B80"},"Anlagenintensität BNAV / BNV");
-
-  // Erwartungslinie, rein illustrativ: fallend
-  const eA = Y(punkte[100].p), eB = Y(punkte[0].p);
-  add("line",{x1:X(0),y1:eA,x2:X(1),y2:eB,stroke:"#A9B5C6","stroke-width":2,
-              "stroke-dasharray":"7 5","stroke-linecap":"round"});
-
-  // Berechnete Linie
-  add("polyline",{points:punkte.map(p=>X(p.q)+","+Y(p.p)).join(" "),
-                  fill:"none",stroke:"#B02A26","stroke-width":2.5,"stroke-linejoin":"round"});
-
-  // Marker
-  const gAkt = 0.05*(state.Q+1.5*aktuelleQuote)*state.E + 0.01*state.F;
-  const pAkt = state.SK>0 ? gAkt/state.SK*100 : 0;
-  const mx = X(aktuelleQuote), my = Y(pAkt);
-  add("line",{x1:mx,y1:my,x2:mx,y2:B,stroke:"#10203A","stroke-width":1,"stroke-dasharray":"3 3"});
-  add("circle",{cx:mx,cy:my,r:6,fill:"#B02A26",stroke:"#fff","stroke-width":2.5});
-  const anchor = aktuelleQuote > 0.72 ? "end" : "start";
-  add("text",{x:mx + (anchor==="end"?-12:12),y:my-11,"text-anchor":anchor,
-              "font-family":"IBM Plex Mono, monospace","font-size":13,"font-weight":600,
-              fill:"#B02A26"}, proz(pAkt));
+let baseState=Object.freeze(buildBase(10000000,1.05));
+let baseResult=Object.freeze(calculateScenario(baseState,{make:baseState.make,investmentRate:0,advanceRate:BASE_RATIOS.deduction*100}));
+let compareState={...COMPARE_DEFAULTS};
+function parseEuroInput(raw){
+  let value=String(raw).trim().toLowerCase().replace(/€/g,"").replace(/\s+/g,"").replace(/\.$/,"");
+  let factor=1;
+  if(/(mrd|milliarde|milliarden|bn)$/.test(value))factor=1e9;
+  else if(/(mio|million|millionen|mn)$/.test(value))factor=1e6;
+  else if(/(tsd|tausend|k)$/.test(value))factor=1e3;
+  value=value.replace(/(mrd|milliarde|milliarden|bn|mio|million|millionen|mn|tsd|tausend|k)$/g,"");
+  if(factor===1&&/^\d{1,3}([.,]\d{3})+$/.test(value))value=value.replace(/[.,]/g,"");
+  else if(value.includes(",")&&value.includes(".")){const comma=value.lastIndexOf(","),dot=value.lastIndexOf(".");value=comma>dot?value.replace(/\./g,"").replace(",","."):value.replace(/,/g,"");}
+  else if(value.includes(","))value=value.replace(",",".");
+  const parsed=Number(value)*factor;
+  return Number.isFinite(parsed)?parsed:NaN;
 }
-
-/* ---------- Render ---------- */
-function render(){
-  Object.entries(PARAMS).forEach(([k,p]) => {
-    const o = document.getElementById("out-"+k);
-    o.textContent = p.einheit === "€" ? eur(state[k]) : dez(state[k],2);
-  });
-
-  const r = berechne(state);
-  document.getElementById("out-bnv").textContent   = eur(r.bnv);
-  document.getElementById("out-quote").textContent = dez(r.quote,3);
-  document.getElementById("out-g").textContent     = eur(r.g);
-  document.getElementById("out-pct").textContent   = proz(r.pct);
-
-  document.getElementById("rechenweg").innerHTML =
-    '<div><span class="lbl">G =</span> 0,05 · ( Q + 1,5 · BNAV / BNV ) · E + 0,01 · F</div>' +
-    '<div><span class="lbl">=</span> 0,05 · ( '+dez(state.Q)+' + 1,5 · <em>'+dez(r.quote,3)+'</em> ) · '+eur(state.E)+' + 0,01 · '+eur(state.F)+'</div>' +
-    '<div><span class="lbl">=</span> 0,05 · '+dez(state.Q + 1.5*r.quote,3)+' · '+eur(state.E)+' + '+eur(0.01*state.F)+'</div>' +
-    '<div><span class="lbl">=</span> <strong>'+eur(r.g)+'</strong></div>';
-
-  // Vergleich der beiden Extremfälle bei sonst identischen Werten
-  const tief  = berechne({...state, BNAV:0.2*r.bnv, BNUV:0.8*r.bnv});
-  const hoch  = berechne({...state, BNAV:0.8*r.bnv, BNUV:0.2*r.bnv});
-  const faktor = tief.g > 0 ? hoch.g / tief.g : 0;
-  document.getElementById("pointe-text").textContent =
-    "Bei identischer Kostenbasis liefert ein Unternehmen mit 80 Prozent Anlagenintensität einen " +
-    "Gewinn von " + eur(hoch.g) + " (" + proz(hoch.pct) + "), ein personalintensives Unternehmen mit " +
-    "20 Prozent dagegen nur " + eur(tief.g) + " (" + proz(tief.pct) + "). Das ist der " +
-    dez(faktor,2) + "-fache Betrag, allein wegen der Vermögensstruktur. Wer stärker automatisiert " +
-    "und dadurch günstiger produziert, erhält nach der Bonner Formel den höheren Gewinnzuschlag.";
-
-  zeichneKurve(r.quote);
+function setScenarioCard(prefix,result){
+  document.getElementById(prefix+"-total").textContent=compactEur(result.total);
+  document.getElementById(prefix+"-rate").textContent="Kalkulatorischer Ergebnisbeitrag";
+  document.getElementById(prefix+"-bonner-rate").textContent=pct(result.bonnerRate);
+  document.getElementById(prefix+"-kazi-rate").textContent=pct(result.kaziRate);
+  document.getElementById(prefix+"-total-rate").textContent=pct(result.totalRate);
+  document.getElementById(prefix+"-net-cost").textContent=compactEur(result.N);
+  document.getElementById(prefix+"-bonner").textContent=compactEur(result.bonner);
+  document.getElementById(prefix+"-kazi").textContent=compactEur(result.kazi);
+  document.getElementById(prefix+"-make").textContent=Math.round(result.make*100)+" / "+Math.round((1-result.make)*100)+" %";
+  document.getElementById(prefix+"-intensity").textContent=pct(result.intensity*100);
+  document.getElementById(prefix+"-deduction").textContent=compactEur(result.deduction);
 }
-
-/* ---------- Quiz ---------- */
-const FRAGEN = [
-  { f:"Welche Preisart ist nach der VO PR 30/53 vorrangig zu vereinbaren?",
-    o:["Selbstkostenerstattungspreis","Marktpreis","Selbstkostenfestpreis","Selbstkostenrichtpreis"],
-    r:1,
-    e:"Der Marktpreis hat Vorrang. Ein Selbstkostenpreis kommt erst in Betracht, wenn kein Marktpreis feststellbar ist." },
-  { f:"Wie wirkt sich eine steigende Anlagenintensität (BNAV / BNV) nach der Bonner Formel auf den kalkulatorischen Gewinn aus?",
-    o:["Der Gewinn sinkt, weil höhere Abschreibungen die Kostenbasis erhöhen.",
-       "Der Gewinn bleibt unverändert, die Vermögensstruktur geht nicht in die Formel ein.",
-       "Der Gewinn steigt, weil der Term 1,5 · BNAV / BNV den Zuschlag erhöht.",
-       "Der Gewinn steigt nur bis zu einer Quote von 0,5 und sinkt danach wieder."],
-    r:2,
-    e:"Die Anlagenintensität geht mit dem Faktor 1,5 direkt in den Zuschlag ein. Je höher der Anteil des Anlagevermögens, desto höher der kalkulatorische Gewinn. Das läuft der betriebswirtschaftlichen Erwartung zuwider." },
-  { f:"Welche Aussage zum Selbstkostenerstattungspreis trifft zu?",
-    o:["Er ist die vorrangige Preisart bei allen Entwicklungsaufträgen.",
-       "Er wird vor Auftragsbeginn fest vereinbart und später nicht mehr angepasst.",
-       "Er ist die letzte Stufe der Preistreppe und wird nach tatsächlichen Kosten abgerechnet.",
-       "Er ist nur bei Aufträgen unterhalb der Schwellenwerte zulässig."],
-    r:2,
-    e:"Der Selbstkostenerstattungspreis steht am Ende der Preistreppe. Abgerechnet wird auf Grundlage der Nachkalkulation, zulässig nur wenn keine vorrangige Preisart in Betracht kommt." }
-];
-
-const quizBox = document.getElementById("quiz");
-let beantwortet = 0, richtig = 0;
-
-FRAGEN.forEach((q,i) => {
-  const box = document.createElement("div");
-  box.className = "frage";
-  box.innerHTML = '<div class="nr">Frage '+(i+1)+' von '+FRAGEN.length+'</div><h3>'+q.f+'</h3>';
-  const opts = [];
-  q.o.forEach((text,j) => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "opt";
-    b.innerHTML = '<span class="m">'+String.fromCharCode(65+j)+'</span><span>'+text+'</span>';
-    b.addEventListener("click", () => {
-      opts.forEach(x => x.disabled = true);
-      opts[q.r].classList.add("richtig");
-      if (j !== q.r) b.classList.add("falsch"); else richtig++;
-      box.querySelector(".aufloesung").classList.add("on");
-      beantwortet++;
-      stand();
-    });
-    opts.push(b);
-    box.appendChild(b);
-  });
-  const a = document.createElement("div");
-  a.className = "aufloesung";
-  a.textContent = q.e;
-  box.appendChild(a);
-  quizBox.appendChild(box);
-});
-
-function stand(){
-  document.getElementById("quizstand").textContent =
-    beantwortet === FRAGEN.length
-      ? "Abgeschlossen: " + richtig + " von " + FRAGEN.length + " richtig."
-      : beantwortet + " von " + FRAGEN.length + " beantwortet.";
+function placeCurvePoint(dotId,labelId,xValue,xMax,yValue,yMax,label){
+  const left=56,right=397,top=20,bottom=218,x=left+(right-left)*Math.max(0,Math.min(xMax,xValue))/xMax,y=bottom-(bottom-top)*Math.max(0,Math.min(yMax,yValue))/yMax,dot=document.getElementById(dotId),textNode=document.getElementById(labelId),nearRight=x>310,nearTop=y<42;
+  dot.setAttribute("cx",x.toFixed(2));dot.setAttribute("cy",y.toFixed(2));textNode.setAttribute("x",(x+(nearRight?-10:10)).toFixed(2));textNode.setAttribute("y",(y+(nearTop?19:-10)).toFixed(2));textNode.setAttribute("text-anchor",nearRight?"end":"start");textNode.textContent=label;
 }
-stand();
-
-/* ---------- Navigation ---------- */
-const SCREENS = [
-  { id:"s-start",  z:"00", t:"Übersicht" },
-  { id:"s-treppe", z:"02", t:"Die Preistreppe" },
-  { id:"s-sim",    z:"03", t:"Bonner Formel" },
-  { id:"s-quiz",   z:"04", t:"Wissensabfrage" },
-  { id:"s-rollen", z:"—",  t:"Rollen und Fortschritt" }
-];
-
-const MODULE = [
-  { id:"s-treppe", z:"01", h:"Grundlagen und Anwendungsbereich", p:"Wann greift das Preisrecht, welche Aufträge sind erfasst.", m:"15 min" },
-  { id:"s-treppe", z:"02", h:"Die Preistreppe", p:"Rangfolge der Preisarten von § 4 bis § 7 VO PR 30/53.", m:"20 min" },
-  { id:"s-sim",    z:"03", h:"Bonner Formel, Simulation", p:"Kalkulatorischer Gewinn nach Nr. 52 LSP, interaktiv.", m:"Simulation", kern:true },
-  { id:"s-quiz",   z:"04", h:"Wissensabfrage", p:"Drei Fragen zur Kontrolle des Gelernten.", m:"10 min" }
-];
-
-const navUl = document.getElementById("nav");
-SCREENS.forEach(s => {
-  const li = document.createElement("li");
-  const b = document.createElement("button");
-  b.type = "button";
-  b.dataset.ziel = s.id;
-  b.innerHTML = '<span class="z">'+s.z+'</span><span>'+s.t+'</span>';
-  b.addEventListener("click", () => zeige(s.id));
-  li.appendChild(b);
-  navUl.appendChild(li);
-});
-
-const modList = document.getElementById("module-list");
-MODULE.forEach(m => {
-  const b = document.createElement("button");
-  b.type = "button";
-  b.className = "module" + (m.kern ? " kern" : "");
-  b.innerHTML = '<span class="z">'+m.z+'</span>' +
-                '<span><h3>'+m.h+'</h3><p>'+m.p+'</p></span>' +
-                '<span class="meta">'+m.m+'</span>';
-  b.addEventListener("click", () => zeige(m.id));
-  modList.appendChild(b);
-});
-
-function zeige(id){
-  document.querySelectorAll(".screen").forEach(s => s.classList.toggle("on", s.id === id));
-  document.querySelectorAll("#nav button").forEach(b =>
-    b.setAttribute("aria-current", b.dataset.ziel === id ? "true" : "false"));
-  window.scrollTo({ top:0, behavior:"instant" });
+function renderFixedCurves(scenario){
+  const bonnerFactor=(baseState.Q+1.5*scenario.intensity)*scenario.make+.2*(1-scenario.make),capitalRatio=scenario.N?scenario.eligibleCapital/scenario.N*100:0;
+  placeCurvePoint("bonner-current-dot","bonner-point-label",bonnerFactor,2.6,scenario.bonnerRate,13,pct(scenario.bonnerRate));
+  placeCurvePoint("kazi-current-dot","kazi-point-label",capitalRatio,100,scenario.kaziRate,6,pct(scenario.kaziRate));
+  document.getElementById("bonner-chart-current").textContent="Aktuell: Bonner-Faktor "+dec(bonnerFactor,2)+" → "+pct(scenario.bonnerRate);
+  document.getElementById("kazi-chart-current").textContent="Aktuell: Kapitalbasis "+pct(capitalRatio)+" von SK III → "+pct(scenario.kaziRate);
+  document.getElementById("bonner-chart-desc").textContent="Der aktuelle Bonner-Faktor beträgt "+dec(bonnerFactor,2)+" und ergibt einen Gewinnanteil von "+pct(scenario.bonnerRate)+".";
+  document.getElementById("kazi-chart-desc").textContent="Die aktuelle anrechenbare Kapitalbasis beträgt "+pct(capitalRatio)+" von SK III und ergibt einen KAZI-Anteil von "+pct(scenario.kaziRate)+".";
 }
+function renderSim(){
+  const base=baseResult,scenario=calculateScenario(baseState,compareState);
+  document.getElementById("out-make").textContent=Math.round(compareState.make*100)+" % Eigen / "+Math.round((1-compareState.make)*100)+" % Fremd";
+  document.getElementById("out-E").textContent=compactEur(scenario.E);document.getElementById("out-F").textContent=compactEur(scenario.F);document.getElementById("out-invest").textContent=dec(compareState.investmentRate,0)+" % · "+compactEur(scenario.investment);document.getElementById("out-advance").textContent=dec(compareState.advanceRate,0)+" % · "+compactEur(scenario.deduction)+(compareState.advanceRate===0?" · keine":"");document.getElementById("out-intensity").textContent=pct(scenario.intensity*100);document.getElementById("out-deduction").textContent=compactEur(scenario.deduction);
+  setScenarioCard("base",base);setScenarioCard("scenario",scenario);renderFixedCurves(scenario);
+  document.getElementById("delta-total").textContent=signedCompactEur(scenario.total-base.total);document.getElementById("delta-bonner").textContent=signedCompactEur(scenario.bonner-base.bonner);document.getElementById("delta-kazi").textContent=signedCompactEur(scenario.kazi-base.kazi);
+  document.getElementById("delta-total-rate").textContent=signedPoints(scenario.totalRate-base.totalRate);document.getElementById("delta-bonner-rate").textContent=signedPoints(scenario.bonnerRate-base.bonnerRate);document.getElementById("delta-kazi-rate").textContent=signedPoints(scenario.kaziRate-base.kaziRate);
+  const capNote=scenario.capApplied?'<div class="cap-note">Die rechnerische Kapitalbasis liegt über SK III. Im Lernmodell greift deshalb die Begrenzung; der KAZI-Anteil bleibt bei maximal 6,00 %.</div>':'';
+  document.getElementById("calculation").innerHTML='<div>Bonner = 0,05 × ('+dec(baseState.Q,2)+' + 1,5 × <em>'+dec(scenario.intensity,3)+'</em>) × '+eur(scenario.E)+' + 0,01 × '+eur(scenario.F)+' = <strong>'+eur(scenario.bonner)+'</strong> = '+pct(scenario.bonnerRate)+'</div><div>Kapitalbasis = '+eur(scenario.BNAV)+' + '+eur(scenario.UV)+' − '+eur(scenario.deduction)+' = '+eur(scenario.BNK)+'</div><div>KAZI-Anteil = 6 % × '+eur(scenario.eligibleCapital)+' / '+eur(baseState.N)+' = <em>'+pct(scenario.kaziRate)+'</em></div><div>KAZI-Zinsbetrag = '+pct(scenario.kaziRate)+' × '+eur(baseState.N)+' = <strong>'+eur(scenario.kazi)+'</strong></div><div>Ergebnisbeitrag = '+eur(scenario.bonner)+' + '+eur(scenario.kazi)+' = <strong>'+eur(scenario.total)+'</strong> = '+pct(scenario.totalRate)+'</div>'+capNote;
+  const causes=[];
+  if(compareState.make!==baseState.make)causes.push("Der Eigenleistungsanteil verändert sich von "+Math.round(baseState.make*100)+" auf "+Math.round(compareState.make*100)+" Prozent; E und F werden in der Bonner Formel unterschiedlich gewichtet.");
+  if(compareState.investmentRate>0)causes.push("Die zusätzliche Gebäudeinvestition beträgt "+dec(compareState.investmentRate,0)+" Prozent der Netto-Selbstkosten beziehungsweise "+compactEur(scenario.investment)+" und erhöht das BNAV, die Anlagenintensität und das betriebsnotwendige Kapital.");
+  const baseAdvanceRate=baseState.N?baseState.deduction/baseState.N*100:0,advanceDifference=scenario.deduction-baseState.deduction;if(compareState.advanceRate<baseAdvanceRate)causes.push("Die erhaltenen Anzahlungen sinken von "+dec(baseAdvanceRate,0)+" auf "+dec(compareState.advanceRate,0)+" Prozent der Netto-Selbstkosten. Das Abzugskapital vermindert sich um "+compactEur(Math.abs(advanceDifference))+" und der KAZI-Zinsbetrag kann steigen.");
+  if(compareState.advanceRate>baseAdvanceRate)causes.push("Die erhaltenen Anzahlungen steigen von "+dec(baseAdvanceRate,0)+" auf "+dec(compareState.advanceRate,0)+" Prozent der Netto-Selbstkosten. Das Abzugskapital erhöht sich um "+compactEur(advanceDifference)+" und der KAZI-Zinsbetrag kann sinken.");
+  if(scenario.capApplied)causes.push("Die KAZI-Begrenzung des Lernmodells ist erreicht; weitere Erhöhungen der Kapitalbasis steigern den KAZI-Anteil nicht über 6 Prozent.");
+  const difference=scenario.total-base.total,effect=difference===0?"Der gesamte kalkulatorische Ergebnisbeitrag bleibt unverändert.":"Der gesamte kalkulatorische Ergebnisbeitrag "+(difference>0?"steigt":"sinkt")+" gegenüber dem Ausgang um "+compactEur(Math.abs(difference))+" beziehungsweise "+dec(Math.abs(scenario.totalRate-base.totalRate),2)+" Prozentpunkte.";
+  document.getElementById("effect-text").textContent=(causes.length?causes.join(" "):"Alle Stellhebel entsprechen dem fixierten Ausgangsszenario. ")+" "+effect+" Das Ergebnis ist eine isolierte Lernrechnung und keine Handlungsempfehlung.";
+  document.querySelectorAll("[data-make]").forEach(button=>button.setAttribute("aria-pressed",Number(button.dataset.make)===compareState.make?"true":"false"));
+  document.querySelectorAll("[data-invest-rate]").forEach(button=>button.setAttribute("aria-pressed",Number(button.dataset.investRate)===compareState.investmentRate?"true":"false"));
+  document.querySelectorAll("[data-advance-rate]").forEach(button=>button.setAttribute("aria-pressed",Number(button.dataset.advanceRate)===compareState.advanceRate?"true":"false"));
+}
+function configureComparisonControls(){
+  const investment=document.getElementById("in-invest"),advance=document.getElementById("in-advance");investment.min="0";investment.max="100";investment.step="1";advance.min="0";advance.max="100";advance.step="1";
+}
+function syncComparisonControls(){document.getElementById("in-make").value=String(compareState.make);document.getElementById("in-invest").value=String(compareState.investmentRate);document.getElementById("in-advance").value=String(compareState.advanceRate);}
+function updateBaselineStatus(){const status=document.getElementById("baseline-status");status.classList.remove("dirty");status.textContent="Fixiert: "+compactEur(baseState.N)+" Netto-Selbstkosten · Q = "+dec(baseState.Q,2)+" · 50 % Eigenleistung · BNAV "+compactEur(baseState.BNAV)+" · UV "+compactEur(baseState.UV)+" · erhaltene Anzahlungen 20 % = "+compactEur(baseState.deduction);}
+function markBaselineDirty(){const status=document.getElementById("baseline-status");status.classList.add("dirty");status.textContent="Eingabe geändert – die graue Referenz bleibt unverändert, bis du erneut „Ausgang fixieren“ wählst.";document.getElementById("baseline-error").classList.remove("on");}
+document.getElementById("base-N-input").addEventListener("input",markBaselineDirty);document.getElementById("base-Q-input").addEventListener("change",markBaselineDirty);
+document.getElementById("base-N-input").addEventListener("keydown",event=>{if(event.key==="Enter")document.getElementById("lock-baseline").click();});
+document.getElementById("lock-baseline").addEventListener("click",()=>{const input=document.getElementById("base-N-input"),error=document.getElementById("baseline-error"),N=Math.round(parseEuroInput(input.value)),Q=Number(document.getElementById("base-Q-input").value);if(!Number.isFinite(N)||N<MIN_NET_COST||N>MAX_NET_COST){error.textContent="Bitte gib einen Betrag zwischen 100.000 € und 100 Mrd. € ein, z. B. 2.000.000.000 oder 2 Mrd.";error.classList.add("on");return;}error.classList.remove("on");input.value=N.toLocaleString("de-DE",{maximumFractionDigits:0});baseState=Object.freeze(buildBase(N,Q));baseResult=Object.freeze(calculateScenario(baseState,{make:baseState.make,investmentRate:0,advanceRate:BASE_RATIOS.deduction*100}));compareState={...COMPARE_DEFAULTS,make:baseState.make};configureComparisonControls();syncComparisonControls();updateBaselineStatus();renderSim();});
+[["in-make","make"],["in-invest","investmentRate"],["in-advance","advanceRate"]].forEach(([id,key])=>document.getElementById(id).addEventListener("input",event=>{compareState[key]=Number(event.target.value);renderSim();}));
+document.querySelectorAll("[data-make]").forEach(button=>button.addEventListener("click",()=>{compareState.make=Number(button.dataset.make);document.getElementById("in-make").value=String(compareState.make);renderSim();}));
+document.querySelectorAll("[data-invest-rate]").forEach(button=>button.addEventListener("click",()=>{compareState.investmentRate=Number(button.dataset.investRate);document.getElementById("in-invest").value=String(compareState.investmentRate);renderSim();}));
+document.querySelectorAll("[data-advance-rate]").forEach(button=>button.addEventListener("click",()=>{compareState.advanceRate=Number(button.dataset.advanceRate);document.getElementById("in-advance").value=String(compareState.advanceRate);renderSim();}));
+document.getElementById("load-example").addEventListener("click",()=>{compareState={make:.40,investmentRate:10,advanceRate:10};syncComparisonControls();renderSim();});
+document.getElementById("reset-sim").addEventListener("click",()=>{compareState={...COMPARE_DEFAULTS,make:baseState.make};syncComparisonControls();renderSim();});
 
-/* ---------- Start ---------- */
-zeige("s-start");
-setzeSzenarioAktiv(null);
-render();
+document.getElementById("print-reference").addEventListener("click",()=>window.print());
+initLogicGraphic();initPriceOrderGraphic();initFormulaGraphic("#bonn-formula","bonn-formula-detail");initFormulaGraphic("#kazi-formula","kazi-formula-detail");initOverallCalculation();configureComparisonControls();syncComparisonControls();updateBaselineStatus();renderSim();updateProgress();show("s-start");
 </script>
 </body>
 </html>
