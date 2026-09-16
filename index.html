@@ -67,11 +67,11 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-.015em;ma
 <div class="app">
   <aside class="side" aria-label="Seitennavigation">
     <div class="brand"><div class="mark">Evaluationsprototyp</div><h1>Preisrecht bei<br>öffentlichen Aufträgen</h1></div>
-    <div class="nav-label">Grundlagenpfad · ca. 31 Min.</div>
+    <div class="nav-label">Grundlagenpfad · ca. 30 Min.</div>
     <nav aria-label="Lernpfad"><ul class="nav" id="nav-learning"></ul></nav>
     <div class="nav-label">Nachschlagen und Konzept</div>
     <nav aria-label="Werkzeuge"><ul class="nav" id="nav-tools"></ul></nav>
-    <section class="side-contact" aria-label="Kontakt zum Ersteller"><div class="label">Kontakt</div><strong>Simon Schrödl</strong><a href="mailto:simon.schroedl@live.com">simon.schroedl@live.com</a><p>Dieses Lernangebot ist ein Mockup im Rahmen einer Bachelorarbeit.</p></section>
+    <section class="side-contact" aria-label="Kontakt zum Ersteller"><div class="label">Kontakt</div><strong>Simon Schrödl</strong><a href="mailto:simon.schroedl@live.com">simon.schroedl@live.com</a><a href="mailto:simon.schroedl@airbus.com">simon.schroedl@airbus.com</a><p>Dieses Lernangebot ist ein Mockup im Rahmen einer Bachelorarbeit.</p></section>
     <div class="side-foot">PreisV 30/53 · LSP<br>Synthetische Beispieldaten<br>Stand: Prototyp, ohne Persistenz</div>
   </aside>
   <main class="main">
@@ -79,7 +79,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-.015em;ma
 
     <section class="screen" id="s-start">
       <div class="eyebrow">00 / Orientierung</div><h2>Preisrecht verständlich anwenden</h2>
-      <p class="lede">Dieser Grundlagenpfad zeigt, warum sich Entscheidungen bei öffentlichen Aufträgen anders auswirken können als in einer rein marktorientierten Betrachtung. Du lernst die Preistreppe, die Bonner Formel und die kalkulatorischen Zinsen (KAZI) kennen und untersuchst die Anlagenintensität in einer interaktiven Simulation.</p>
+      <p class="lede">Dieser Grundlagenpfad zeigt, warum sich Entscheidungen bei öffentlichen Aufträgen anders auswirken können als in einer rein marktorientierten Betrachtung. Du lernst die Preistreppe, die Bonner Formel und den kalkulatorischen Zinssatz (KAZI) kennen und untersuchst die Anlagenintensität in einer interaktiven Simulation.</p>
       <div class="quick-actions"><button class="btn" type="button" data-target="s-bedeutung">Grundlagen starten</button><button class="btn secondary" type="button" data-target="s-sim">Direkt zur Simulation</button><button class="btn tertiary" type="button" data-target="s-reference">Zum Nachschlagebereich</button></div>
       <div class="callout warn"><h4>Einordnung des Prototyps</h4><p>Das Lernangebot sensibilisiert für preisrechtliche Zusammenhänge. Es ersetzt weder eine fachliche Einzelfallprüfung noch eine rechtliche Beratung und darf nicht für reale Angebots-, Investitions- oder Freigabeentscheidungen verwendet werden.</p></div>
       <figure class="calc-overview">
@@ -105,7 +105,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-.015em;ma
           </div>
         </div>
         <div class="logic-detail calc-overview-detail" id="calc-overview-detail" aria-live="polite"><div class="kind">Interaktive Gesamtkalkulation</div><h4>Wähle einen Bereich aus</h4><p>Hier erscheint die Erklärung des jeweiligen Kalkulationsbestandteils.</p></div>
-        <p class="source">Eigene interaktive Rekonstruktion nach der bereitgestellten vereinfachten Showroom-Grafik. Darstellung und Begriffe sind für Lernzwecke verdichtet.</p>
+        <p class="source">Eigene interaktive Rekonstruktion nach der Showroom-Grafik. Darstellung und Begriffe sind für Lernzwecke verdichtet.</p>
       </figure>
       <div class="module-list" id="module-list"></div>
     </section>
@@ -141,7 +141,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-.015em;ma
           </article>
           <article class="logic-column">
             <h4>Verteidigungsgeschäft mit Selbstkostenpreis</h4>
-            <div class="logic-note"><b>Der Preis folgt preisrechtlichen Vorgaben.</b><ul><li>Ausgangspunkt sind anrechenbare Kosten</li><li>Bonner-Formel-Gewinn und KAZI bilden den kalkulatorischen Ergebnisbeitrag</li></ul></div>
+            <div class="logic-note"><b>Der Preis folgt preisrechtlichen Vorgaben.</b><ul><li>Ausgangspunkt sind anrechenbare Kosten</li><li>Bonner-Formel-Gewinn und KAZI bilden den kalkulatorischen Ergebnisbeitrag</li><li>Der Gewinn bezieht sich prozentual auf die Kostenbasis</li></ul></div>
             <div class="price-stack">
               <div class="price-caption">Preis auf Selbstkostenbasis</div>
               <button class="price-line logic-hotspot" type="button" aria-label="Preis auf Selbstkostenbasis erklären" data-kind="Selbstkostenpreis" data-title="Preis auf Selbstkostenbasis" data-detail="Der Selbstkostenpreis setzt sich im vereinfachten Lernmodell aus den anrechenbaren Kosten, dem KAZI-Zinsbetrag und dem Gewinnanteil nach Bonner Formel zusammen."></button>
@@ -154,7 +154,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-.015em;ma
           </article>
         </div>
         <div class="logic-detail" id="logic-detail" aria-live="polite"><div class="kind">Interaktive Grafik</div><h4>Wähle einen Bereich aus</h4><p>Die Erläuterung des jeweiligen Preis-, Gewinn- oder Kostenbestandteils erscheint hier.</p></div>
-        <p class="source">Eigene interaktive Darstellung in Anlehnung an die bereitgestellte Showroom-Grafik; für Lernzwecke fachlich vereinfacht.</p>
+        <p class="source">Eigene interaktive Darstellung in Anlehnung an die Showroom-Grafik; für Lernzwecke fachlich vereinfacht.</p>
       </figure>
       <div class="callout signal"><h4>Merksatz</h4><p>Im Marktgeschäft begrenzt der erzielbare Marktpreis den Gewinn. Beim hier betrachteten Selbstkostenpreis werden die anrechenbaren Kosten um den KAZI-Zinsbetrag und den Gewinn nach Bonner Formel ergänzt. Selbstkostenpreise bleiben gegenüber Marktpreisen nachrangig.</p></div>
     </section>
@@ -177,7 +177,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-.015em;ma
           <div class="competition-axis"><span>funktionierender Wettbewerb</span><span>kein belastbarer Wettbewerbspreis</span></div>
         </div>
         <div class="logic-detail" id="price-order-detail" aria-live="polite"><div class="kind">Interaktive Preistreppe</div><h4>Wähle eine Preisart aus</h4><p>Hier erscheint, wie die jeweilige Preisart ermittelt wird und welchen Rang sie besitzt.</p></div>
-        <p class="source">Eigene interaktive Darstellung in Anlehnung an die bereitgestellte Showroom-Grafik; Rechtsgrundlage: PreisV 30/53, insbesondere §§ 3–8.</p>
+        <p class="source">Eigene interaktive Darstellung in Anlehnung an die Showroom-Grafik; Rechtsgrundlage: PreisV 30/53, insbesondere §§ 3–8.</p>
       </figure>
       <div class="card"><div class="treppe">
         <div class="stufe"><div class="para">§ 4</div><div><h4>Marktpreis</h4><p>Marktpreise besitzen grundsätzlich Vorrang. Zuerst ist zu prüfen, ob für die Leistung ein Preis nach den Marktpreisregeln festgestellt werden kann.</p></div></div>
@@ -207,21 +207,21 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-.015em;ma
         <span class="formula-op">+</span>
         <button class="formula-part regulated" type="button" data-kind="Vorgegebener Faktor" data-title="0,01 – ein Prozent auf den Buy-Anteil" data-detail="Fertigungsmaterial und Fremdleistungen werden im zweiten Formelteil mit 1 Prozent gewichtet.">0,01</button>
         <span class="formula-op">×</span>
-        <button class="formula-part individual" type="button" data-kind="Unternehmensindividuelle Größe" data-title="F – Fertigungsmaterial und Fremdleistungen (Buy)" data-detail="F umfasst Fertigungsmaterial und Fremdleistungen. Dieser Buy-Anteil wird anders gewichtet als die Eigenleistung E.">F</button>
+        <button class="formula-part individual" type="button" data-kind="Unternehmensindividuelle Größe" data-title="F – Fertigungsmaterial und Fremdleistungen (Buy)" data-detail="F umfasst Fertigungsmaterial und Fremdleistungen (Subcontracting). Dieser Buy-Anteil wird anders gewichtet als die Eigenleistung E.">F</button>
       </div>
       <div class="formula-legend"><span><i class="regulated"></i>durch Erlass beziehungsweise Vertragsregelung vorgegeben</span><span><i class="individual"></i>aus Unternehmens- und Kalkulationsdaten abgeleitet</span></div>
       <div class="logic-detail formula-detail" id="bonn-formula-detail" aria-live="polite"><div class="kind">Interaktive Formel</div><h4>Wähle einen Bestandteil aus</h4><p>Die deutsche Erläuterung des jeweiligen Faktors erscheint hier.</p></div>
       <div class="grid2" style="margin-top:18px"><article class="card"><div class="panel-title">Make-or-buy-Logik</div><h3>5 Prozent auf Make, 1 Prozent auf Buy</h3><p>Der eigenleistungsbezogene Formelteil wird mit 0,05 sowie zusätzlich mit Q und Anlagenintensität gewichtet. Fertigungsmaterial und Fremdleistungen gehen mit 0,01 ein. Deshalb kann eine Verlagerung zwischen E und F den kalkulatorischen Gewinn verändern.</p></article><article class="card"><div class="panel-title">Vermögensstruktur</div><h3>BNAV im Verhältnis zu BNAV + UV</h3><p>Nur betriebsnotwendiges Vermögen ist relevant. Steigt bei gleichbleibenden übrigen Eingangsgrößen der Anteil des BNAV am gesamten betriebsnotwendigen Vermögen, steigt im Lernmodell der eigenleistungsbezogene Gewinnanteil.</p></article></div>
       <div class="q-grid" aria-label="Qualifikationsfaktoren"><div class="q-item"><b>0,70</b><span>Instandsetzungsvertrag</span></div><div class="q-item"><b>1,05</b><span>Beschaffungsvertrag</span></div><div class="q-item"><b>1,10</b><span>Studien-, Forschungs- und Entwicklungsvertrag</span></div></div>
-      <div class="callout signal"><h4>Wirkungszusammenhang</h4><p>Steigt bei ansonsten gleichen Eingangsgrößen das Verhältnis BNAV/BNV, erhöht der mit 1,5 gewichtete Term den kalkulatorischen Gewinn des Lernmodells.</p></div>
-      <p class="source">Eigene interaktive Darstellung in Anlehnung an die bereitgestellte Showroom-Grafik. Fachliche Grundlage: Bonner Formel gemäß den für den Verteidigungsbereich verwendeten Vertragsbedingungen; für Lernzwecke vereinfacht.</p>
+      <div class="callout signal"><h4>Wirkungszusammenhang</h4><p>Steigt bei ansonsten gleichen Eingangsgrößen das Verhältnis BNAV/BNV (bspw. durch den Bau oder Kauf eines Gebäudes), erhöht diese steigerung der Anlagenintensität den kalkulatorischen Gewinn.</p></div>
+      <p class="source">Eigene interaktive Darstellung in Anlehnung an die Showroom-Grafik. Fachliche Grundlage: Bonner Formel gemäß den für den Verteidigungsbereich verwendeten Vertragsbedingungen; für Lernzwecke vereinfacht.</p>
     </section>
 
     <section class="screen" id="s-decisions" hidden>
       <div class="eyebrow">05 / Betriebliche Entscheidungen · ca. 3 Min.</div><h2>Investitionen und Make-or-buy mitdenken</h2>
       <p class="lede">Die Formel macht sichtbar, warum Vermögens- und Leistungsstruktur zusätzliche preisrechtliche Effekte entfalten können. Diese Effekte dürfen jedoch nie isoliert als Entscheidungsempfehlung verstanden werden.</p>
       <div class="learning-goal"><div class="icon">?</div><div><b>Lernziel</b><p>Du erkennst, bei welchen Entscheidungssituationen eine frühzeitige fachliche Prüfung sinnvoll ist.</p></div></div>
-      <div class="grid2"><article class="card decision-card"><div class="panel-title">Investitionsentscheidung</div><h3>Anlagevermögen</h3><p>Erhöht eine Investition das anerkannte betriebsnotwendige Anlagevermögen, kann sich dadurch die Anlagenintensität und damit der kalkulatorische Gewinn verändern.</p><ul><li>Ist das Vermögen betriebsnotwendig?</li><li>Welche Kosten- und Kapitalwirkungen entstehen?</li><li>Welche weiteren wirtschaftlichen Kriterien sind relevant?</li></ul></article><article class="card decision-card"><div class="panel-title">Make-or-buy</div><h3>Eigen- und Fremdleistung</h3><p>Eigenleistung E und Fertigungsmaterial beziehungsweise Fremdleistungen F werden in der Formel unterschiedlich berücksichtigt. Eine Verschiebung kann deshalb die Gewinnbemessung verändern.</p><ul><li>Wie verändern sich E und F?</li><li>Welche qualitativen und operativen Folgen entstehen?</li><li>Ist eine preisrechtliche Einzelfallprüfung erforderlich?</li></ul></article></div>
+      <div class="grid2"><article class="card decision-card"><div class="panel-title">Investitionsentscheidung</div><h3>Anlagevermögen</h3><p>Erhöht eine Investition das anerkannte betriebsnotwendige Anlagevermögen, kann sich dadurch die Anlagenintensität und damit der kalkulatorische Gewinn verändern.</p><ul><li>Ist das Vermögen betriebsnotwendig?</li><li>Welche Kosten- und Kapitalwirkungen entstehen?</li><li>Welche weiteren wirtschaftlichen Kriterien sind relevant?</li></ul></article><article class="card decision-card"><div class="panel-title">Make-or-buy</div><h3>Eigen- und Fremdleistung</h3><p>Eigenleistung E und Fertigungsmaterial beziehungsweise Fremdleistungen (Subcontracting) F werden in der Formel unterschiedlich berücksichtigt. Eine Verschiebung kann deshalb die Gewinnbemessung verändern.</p><ul><li>Wie verändern sich E und F?</li><li>Welche qualitativen und operativen Folgen entstehen?</li><li>Ist eine preisrechtliche Einzelfallprüfung erforderlich?</li></ul></article></div>
       <div class="callout warn"><h4>Keine isolierte Optimierung</h4><p>Kosten, Risiken, Kapazitäten, Qualität, Vertragsbedingungen und preisrechtliche Anerkennung bleiben entscheidend. Die Formel bildet nur einen Ausschnitt der Entscheidungssituation ab.</p></div>
     </section>
 
@@ -249,7 +249,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-.015em;ma
       <div class="callout"><h4>Merke: geleistet oder erhalten?</h4><p>Geleistete Anzahlungen können das Umlaufvermögen erhöhen. Erhaltene Anzahlungen können dagegen als zinsloses Abzugskapital die verzinsliche Kapitalbasis vermindern. Ob und in welcher Höhe ein Bilanzposten eingeht, muss fachlich abgegrenzt werden.</p></div>
       <div class="card"><div class="panel-title">Vereinfachtes Rechenbeispiel</div><div class="example-equation"><div><div class="result">6 % × (12 + 8 − 5) / 30 = 3,00 % KAZI</div><p class="micro" style="margin:6px 0 0">BNK: 15 Mio. € · Verrechnungsbasis SK III: 30 Mio. €</p></div><div class="arrow" aria-hidden="true">→</div><div><div class="result">3,00 % × 30 Mio. € = 0,90 Mio. €</div><p class="micro" style="margin:6px 0 0">kalkulatorischer Zinsbetrag</p></div></div></div>
       <div class="callout signal"><h4>Zusammenspiel mit der Bonner Formel</h4><p>Die Bonner Formel und KAZI erfüllen unterschiedliche Rechenfunktionen, wirken im hier verwendeten Modell jedoch zusammen: Der kalkulatorische Ergebnisbeitrag besteht aus dem Gewinn nach Bonner Formel und dem vom Kunden vergüteten KAZI-Zinsbetrag.</p></div>
-      <p class="source">Eigene interaktive Darstellung in Anlehnung an die bereitgestellten Showroom-Grafiken. Fachliche Grundlage: LSP Nr. 43–44 und die im Verteidigungsbereich verwendete Vertragsregelung; für Lernzwecke vereinfacht.</p>
+      <p class="source">Eigene interaktive Darstellung in Anlehnung an die Showroom-Grafiken. Fachliche Grundlage: LSP Nr. 43–44 und die im Verteidigungsbereich verwendete Vertragsregelung; für Lernzwecke vereinfacht.</p>
     </section>
 
     <section class="screen" id="s-sim" hidden>
@@ -330,7 +330,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-.015em;ma
       <div class="eyebrow">Nachschlagen / One-Pager</div><h2>Preisrecht auf einen Blick</h2><p class="lede">Kompakte Orientierung für bereits behandelte Inhalte. Die Übersicht ersetzt keine fachliche Prüfung des konkreten Sachverhalts.</p>
       <div class="quick-actions no-print"><button class="btn" id="print-reference" type="button">One-Pager drucken</button><button class="btn secondary" type="button" data-target="s-support">Fachliche Unterstützung</button></div>
       <table class="reference-table"><thead><tr><th>Thema</th><th>Kernaussage</th></tr></thead><tbody><tr><td>Marktpreisvorrang</td><td>Marktpreisen nach § 4 PreisV 30/53 ist grundsätzlich der Vorzug vor Selbstkostenpreisen zu geben.</td></tr><tr><td>§ 5</td><td>Selbstkostenpreise dürfen nur ausnahmsweise unter den dort genannten Voraussetzungen vereinbart werden.</td></tr><tr><td>§ 6</td><td>Regelt Selbstkostenfestpreis und Selbstkostenrichtpreis; der Festpreis ist möglichst vorzuziehen.</td></tr><tr><td>§ 7</td><td>Der Selbstkostenerstattungspreis kommt nur in Betracht, wenn eine andere Preisermittlung nicht möglich ist.</td></tr><tr><td>Gesamtlogik</td><td>Im vereinfachten Lernmodell: Selbstkostenpreis = anrechenbare Kosten + KAZI-Zinsbetrag + Gewinn nach Bonner Formel. Kalkulatorischer Ergebnisbeitrag = Bonner-Formel-Gewinn + KAZI-Zinsbetrag.</td></tr><tr><td>Bonner Formel</td><td>G = 0,05 × (Q + 1,5 × BNAV/(BNAV + UV)) × E + 0,01 × F</td></tr><tr><td>KAZI</td><td>KAZI = 6 % × (BNAV + UV − Abzugskapital) / Verrechnungsbasis SK III. Der Zuschlagssatz ergibt auf die Basis angewendet den vom Kunden vergüteten kalkulatorischen Zinsbetrag.</td></tr><tr><td>Anlagenintensität</td><td>BNAV/BNV. Bei sonst gleichen Eingangsgrößen erhöht ein höheres Verhältnis den Gewinnanteil nach Bonner Formel.</td></tr><tr><td>Make-or-buy</td><td>E und F werden unterschiedlich gewichtet. Preisrechtliche Effekte sind gemeinsam mit allen übrigen Entscheidungskriterien zu prüfen.</td></tr><tr><td>Modellgrenze</td><td>Die Simulation verwendet synthetische Daten, vereinfacht die Realität und gibt keine Handlungsempfehlung.</td></tr></tbody></table>
-      <div class="callout warn"><h4>Wann fachliche Unterstützung einbeziehen?</h4><p>Insbesondere bei der Wahl der Preisart, realen Kalkulationen, Investitions- und Make-or-buy-Entscheidungen sowie Fragen zur Anerkennung von Kosten und Vermögen.</p></div><p class="source">Quellenbasis des Lernprototyps: PreisV 30/53, LSP Nr. 43–46 und 51–52, Verordnung PR Nr. 4/72 sowie die in der Bachelorarbeit dokumentierte Fachliteratur. Fachliche Freigabe vor betrieblicher Nutzung erforderlich.</p>
+      <div class="callout warn"><h4>Wann fachliche Unterstützung einbeziehen?</h4><p>Insbesondere bei der Wahl der Preisart, realen Kalkulationen, Investitions- und Make-or-buy-Entscheidungen sowie Fragen zur Anerkennung von Kosten und Vermögen.</p></div><p class="source">Quellenbasis des Lernprototyps: PreisV 30/53, LSP Nr. 43–46 und 51–52, Verordnung PR Nr. 4/72 sowie die in der Bachelorarbeit dokumentierte Fachliteratur. Fachliche Freigabe vor betrieblicher Nutzung erforderlich.</p><p>Kontakt: simon.schroedl@airbus.com</p>
     </section>
 
     <section class="screen" id="s-support" hidden>
@@ -379,7 +379,7 @@ function updateProgress(){
 function show(id){document.querySelectorAll(".screen").forEach(s=>{const active=s.id===id;s.hidden=!active;s.classList.toggle("on",active);});document.querySelectorAll(".nav button").forEach(b=>{if(b.dataset.target===id)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current");});updateProgress();window.scrollTo({top:0,behavior:"auto"});const heading=document.querySelector("#"+id+" h2");if(heading){heading.setAttribute("tabindex","-1");heading.focus({preventScroll:true});}}
 
 const CHECKS={
-  "s-bedeutung":{q:"Warum kann eine Investition im Preisrecht den kalkulatorischen Gewinn oder die kalkulatorischen Zinsen erhöhen?",a:["Weil der Staat jede mit Steuergeld verbundene Investition automatisch mit zusätzlichem Gewinn belohnt.","Weil anerkanntes betriebsnotwendiges Anlagevermögen die Kapitalbasis und die Anlagenintensität beeinflussen kann.","Weil jede Investition den Marktpreis gesetzlich erhöht."],correct:1,why:"Entscheidend ist die preisrechtliche Anerkennung als betriebsnotwendig. Die Wirkung ergibt sich aus der Berechnungssystematik und ist keine pauschale staatliche Investitionsprämie."},
+  "s-bedeutung":{q:"Warum kann eine Investition im Preisrecht den kalkulatorischen Gewinn oder den kalkulatorischen Zins erhöhen?",a:["Weil der Staat jede mit Steuergeld verbundene Investition automatisch mit zusätzlichem Gewinn belohnt.","Weil anerkanntes betriebsnotwendiges Anlagevermögen die Kapitalbasis und die Anlagenintensität beeinflussen kann.","Weil jede Investition den Marktpreis gesetzlich erhöht."],correct:1,why:"Entscheidend ist die preisrechtliche Anerkennung als betriebsnotwendig. Die Wirkung ergibt sich aus der Berechnungssystematik und ist keine pauschale staatliche Investitionsprämie."},
   "s-treppe":{q:"Welche Zuordnung in der Preistreppe ist richtig?",a:["§ 6 regelt Selbstkostenfestpreis und Selbstkostenrichtpreis.","§ 5 regelt ausschließlich den Selbstkostenfestpreis.","§ 7 gibt dem Erstattungspreis Vorrang vor dem Festpreis."],correct:0,why:"§ 6 erfasst Fest- und Richtpreis. Der Erstattungspreis nach § 7 kommt nur nachrangig in Betracht."},
   "s-logik":{q:"Welche Aussage beschreibt den Selbstkostenpreis im Vergleich zum Marktpreis am besten?",a:["Er entsteht immer frei durch Angebot und Nachfrage.","Er baut vereinfacht auf anrechenbaren Kosten, dem KAZI-Zinsbetrag und dem Gewinn nach Bonner Formel auf und ist gegenüber dem Marktpreis nachrangig.","Er enthält grundsätzlich keine Gemeinkosten."],correct:1,why:"Selbstkostenpreise sind die Ausnahme. Ihre Kosten- und Ergebnisbestandteile müssen den anwendbaren preisrechtlichen Vorgaben entsprechen."},
   "s-formel":{q:"Wie unterscheidet die Bonner Formel zwischen Make und Buy?",a:["Eigenleistung E wird im 5-Prozent-Term mit Q und Anlagenintensität berücksichtigt; F geht mit 1 Prozent ein.","Eigenleistung E und Fremdleistung F werden immer identisch gewichtet.","Nur Fertigungsmaterial und Fremdleistungen F beeinflussen den Gewinn."],correct:0,why:"Die Formel gewichtet den Make-Anteil E über den 0,05-Term sowie Q und Anlagenintensität. Der Buy-Anteil F geht separat mit 0,01 ein."},
